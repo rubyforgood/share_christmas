@@ -35,15 +35,14 @@ https://gorails.com/setup/osx/10.11-el-capitan.
 
  Then from a command prompt:
 
-```
+```bash
 $ git clone http://github.com/rubyforgood/share_christmas
 $ cd share_christmas
-$ bundle install
-$ rails db:create
-$ rails server
+$ bin/setup
+$ rails s
 ```
 
-Then hit http://localhost:3000 with your browser and off you go!
+Then navigate to `http://localhost:3000` in your browser to view the app.
 
 ## Testing
 
@@ -58,3 +57,20 @@ or by running the default rake task with
 ```
 rake
 ```
+
+## User Stories
+
+As an admin of a Volunteer Center, I want to:
+    - add a new organization
+    - create a new campaign
+    - manage all affiliated organizations
+    - manage all affiliated campaigns
+
+As a Organization Campaign manage, I want to:
+    - add a new donor a organization's campaign
+    - add a new recipient to an organization's campaign
+    - facilitate  match between a donor and a recipient
+
+As an individual Donor, I want to:
+    - register for a organization's campaign
+    - choose a potential recipient to sponsor
