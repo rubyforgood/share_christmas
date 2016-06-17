@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617191148) do
+ActiveRecord::Schema.define(version: 20160617194853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20160617191148) do
     t.string   "name"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "description"
+    t.date     "donation_deadline"
+    t.date     "reminder_date"
   end
 
   add_index "campaigns", ["volunteer_center_id"], name: "index_campaigns_on_volunteer_center_id", using: :btree
@@ -61,6 +64,9 @@ ActiveRecord::Schema.define(version: 20160617191148) do
     t.string   "name"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.text     "description"
+    t.string   "logo_file_name"
+    t.string   "url"
   end
 
   add_index "organizations", ["volunteer_center_id"], name: "index_organizations_on_volunteer_center_id", using: :btree
@@ -76,6 +82,11 @@ ActiveRecord::Schema.define(version: 20160617191148) do
     t.string   "zip_code"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "age"
+    t.string   "gender"
+    t.string   "race"
+    t.string   "size"
+    t.string   "wish_list"
   end
 
   add_index "recipients", ["organization_campaign_id"], name: "index_recipients_on_organization_campaign_id", using: :btree
