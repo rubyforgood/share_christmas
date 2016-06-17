@@ -35,10 +35,12 @@ https://gorails.com/setup/osx/10.11-el-capitan.
 
  Then from a command prompt:
 
-     $ git clone http://github.com/rubyforgood/share_christmas
-     $ cd share_christmas
-     $ bundle install
-     $ rails db:create
-     $ rails server
+```
+$ git clone http://github.com/rubyforgood/share_christmas
+$ cd share_christmas
+$ bundle install
+$ rails db:create
+$ rails server
+```
 
 Then hit http://localhost:3000 with your browser and off you go!  
