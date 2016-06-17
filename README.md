@@ -61,16 +61,16 @@ rake
 ## User Stories
 
 As an admin of a Volunteer Center, I want to:
-    - add a new organization
-    - create a new campaign
-    - manage all affiliated organizations
-    - manage all affiliated campaigns
+  - add a new organization
+  - create a new campaign
+  - manage all affiliated organizations
+  - manage all affiliated campaigns
 
 As a Organization Campaign manage, I want to:
-    - add a new donor a organization's campaign
-    - add a new recipient to an organization's campaign
-    - facilitate  match between a donor and a recipient
+  - add a new donor a organization's campaign
+  - add a new recipient to an organization's campaign
+  - facilitate  match between a donor and a recipient
 
 As an individual Donor, I want to:
-    - register for a organization's campaign
-    - choose a potential recipient to sponsor
+  - register for a organization's campaign
+  - choose a potential recipient to sponsor
