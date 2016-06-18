@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618005102) do
+ActiveRecord::Schema.define(version: 20160618155925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,27 +65,26 @@ ActiveRecord::Schema.define(version: 20160618005102) do
 
   add_index "campaigns", ["volunteer_center_id"], name: "index_campaigns_on_volunteer_center_id", using: :btree
 
-  create_table "donors", force: :cascade do |t|
-    t.integer  "organization_campaign_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "donors", ["organization_campaign_id"], name: "index_donors_on_organization_campaign_id", using: :btree
-
   create_table "matches", force: :cascade do |t|
-    t.integer  "donor_id"
     t.integer  "recipient_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.boolean  "fulfilled",    default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "fulfilled",     default: false
+    t.integer  "membership_id"
   end
 
-  add_index "matches", ["donor_id"], name: "index_matches_on_donor_id", using: :btree
+  add_index "matches", ["membership_id"], name: "index_matches_on_membership_id", using: :btree
   add_index "matches", ["recipient_id"], name: "index_matches_on_recipient_id", using: :btree
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "memberships", ["organization_id"], name: "index_memberships_on_organization_id", using: :btree
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
   create_table "organization_campaigns", force: :cascade do |t|
     t.integer  "organization_id"
@@ -145,6 +144,8 @@ ActiveRecord::Schema.define(version: 20160618005102) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -158,9 +159,10 @@ ActiveRecord::Schema.define(version: 20160618005102) do
   end
 
   add_foreign_key "campaigns", "volunteer_centers"
-  add_foreign_key "donors", "organization_campaigns"
-  add_foreign_key "matches", "donors"
+  add_foreign_key "matches", "memberships"
   add_foreign_key "matches", "recipients"
+  add_foreign_key "memberships", "organizations"
+  add_foreign_key "memberships", "users"
   add_foreign_key "organization_campaigns", "campaigns"
   add_foreign_key "organization_campaigns", "organizations"
   add_foreign_key "organizations", "volunteer_centers"
