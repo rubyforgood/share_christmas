@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618194610) do
+ActiveRecord::Schema.define(version: 20160618230106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,8 +72,11 @@ ActiveRecord::Schema.define(version: 20160618194610) do
   create_table "organization_campaigns", force: :cascade do |t|
     t.integer  "organization_id"
     t.integer  "campaign_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.text     "description"
+    t.date     "reminder_date"
+    t.date     "donation_deadline"
   end
 
   add_index "organization_campaigns", ["campaign_id"], name: "index_organization_campaigns_on_campaign_id", using: :btree
@@ -89,6 +92,7 @@ ActiveRecord::Schema.define(version: 20160618194610) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "url"
   end
 
   add_index "organizations", ["volunteer_center_id"], name: "index_organizations_on_volunteer_center_id", using: :btree
