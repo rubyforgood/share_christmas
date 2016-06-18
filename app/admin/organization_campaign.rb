@@ -20,9 +20,32 @@ permit_params :organization_id, :campaign_id, :reminder_date,
       f.input :campaign
       f.input :reminder_date
       f.input :donation_deadline
-      f.input :description
+      f.input :description, label: 'Description', input_html: { class: 'tinymce' }
     end
 
     f.actions
+  end
+
+  index do
+    selectable_column
+    id_column
+    column :created_at
+    column :organization
+    column :campaign
+    column :reminder_date
+    column :donation_deadline
+    html_column :description
+    actions
+  end
+
+  show do |organization_campaign|
+    attributes_table do
+      row :created_at
+      row :organization
+      row :campaign
+      row :reminder_date
+      row :donation_deadline
+      html_row :description
+    end
   end
 end
