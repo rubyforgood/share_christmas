@@ -79,8 +79,9 @@ ActiveRecord::Schema.define(version: 20160618005102) do
   create_table "matches", force: :cascade do |t|
     t.integer  "donor_id"
     t.integer  "recipient_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "fulfilled",    default: false
   end
 
   add_index "matches", ["donor_id"], name: "index_matches_on_donor_id", using: :btree
