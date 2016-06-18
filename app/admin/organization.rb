@@ -23,17 +23,25 @@ ActiveAdmin.register Organization do
     f.actions
   end
 
+  index do
+    selectable_column
+    id_column
+    column :created_at
+    column :organization
+    column :name
+    html_column :description
+    image_column :logo
+    actions
+  end
+
   show do |organization|
     attributes_table do
       row :volunteer_center
       row :name
-      row :description
-      row :logo do
-        image_tag(organization.logo.url(:medium))
-      end
+      html_row :description
+      image_row :logo
       row :created_at
       row :updated_at
-      # Will display the image on show object page
     end
   end
 end
