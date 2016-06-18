@@ -3,7 +3,8 @@ ActiveAdmin.register OrganizationCampaign do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :organization_id, :campaign_id
+permit_params :organization_id, :campaign_id, :reminder_date,
+  :donation_deadline, :description
 #
 # or
 #
@@ -17,6 +18,9 @@ permit_params :organization_id, :campaign_id
     f.inputs "Details" do
       f.input :organization
       f.input :campaign
+      f.input :reminder_date
+      f.input :donation_deadline
+      f.input :description
     end
 
     f.actions
