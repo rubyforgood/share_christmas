@@ -1,0 +1,28 @@
+<div class="user-memberships">
+  <div class="membership">
+    <p>Hi <b><%= current_user.first_name %></b>!</p>
+    <p>You have been matched with the following people.</p>
+    <% @memberships.each do |membership| %>
+      <%= membership.organization.name %>
+      <ul class="matches">
+        <% membership.matches.each do |match| %>
+          <li class="match-name">
+            <%= match.recipient.first_name %> <%= match.recipient.last_name %>
+          </li>
+          <li class="match-gender">
+            <%= match.recipient.gender %>
+          </li>
+          <li class="match-age">
+            <%= match.recipient.age %>
+          </li>
+          <li class="match-wish-list">
+            Is looking for: <%= match.recipient.wish_list %>
+          </li>
+          <li class="match-info">
+            <%= match.recipient.email%>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
