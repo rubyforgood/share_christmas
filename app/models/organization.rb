@@ -8,7 +8,6 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  description         :text
-#  url                 :string
 #  logo_file_name      :string
 #  logo_content_type   :string
 #  logo_file_size      :integer
@@ -17,7 +16,10 @@
 
 class Organization < ActiveRecord::Base
   belongs_to :volunteer_center
+
   has_many :organization_campaigns
+  has_many :campaigns, through: :organization_campaigns
+
   has_many :memberships
   has_many :users, through: :memberships
 

@@ -13,4 +13,11 @@ class OrganizationCampaign < ActiveRecord::Base
   belongs_to :organization
   belongs_to :campaign
   has_many :recipients
+
+  validates :organization_id, presence: true
+  validates :campaign_id, presence: true
+
+  delegate :name, to: :campaign, prefix: true, allow_nil: true
+  delegate :description, to: :campaign, prefix: true, allow_nil: true
+  delegate :name, to: :organization, prefix: true, allow_nil: true
 end
