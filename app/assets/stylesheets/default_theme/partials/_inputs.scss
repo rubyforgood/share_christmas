@@ -1,0 +1,28 @@
+input {
+  font-size: 18px;
+  font-family: $body-font-family;
+  width: 296px;
+  height: 48px;
+  padding: 0 10px;
+  margin: 14px;
+  &[type="password"] {
+    background-color: $input-background-color;
+    border: none;
+    text-align: center;
+    color: $soft-gray;
+    &:focus {
+      outline: none;
+    }
+  }
+  &[type="submit"] {
+    background-color: #EACC96;
+    color: #FFF;
+    border: none;
+  }
+}
+
+label {
+  color: rgba(0,0,0,.45);
+  font-size: 18px;
+  font-family: $input-background-color;
+}
