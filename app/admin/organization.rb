@@ -3,7 +3,7 @@ ActiveAdmin.register Organization do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :name, :volunteer_center_id
+ permit_params :name, :volunteer_center_id, :description, :logo
 # or
 #
 # permit_params do
@@ -21,5 +21,19 @@ ActiveAdmin.register Organization do
     end
 
     f.actions
+  end
+
+  show do |organization|
+    attributes_table do
+      row :volunteer_center
+      row :name
+      row :description
+      row :logo do
+        image_tag(organization.logo.url(:medium))
+      end
+      row :created_at
+      row :updated_at
+      # Will display the image on show object page
+    end
   end
 end
