@@ -18,3 +18,5 @@
 
 # images in dev
 /public/system
+
+.ruby-version
