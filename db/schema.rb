@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20160618155925) do
   create_table "memberships", force: :cascade do |t|
     t.integer  "organization_id"
     t.integer  "user_id"
+    t.boolean  "send_email"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
