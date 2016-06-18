@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get "users/profile", to: "users#show", as: "user_show"
 
   get 'users/styleguide' => 'users#styleguide', as: :signup
+
+  resources :organization_campaigns, only: :show
 end

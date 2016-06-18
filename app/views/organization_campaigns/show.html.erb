@@ -1,0 +1,16 @@
+<% @recipients.each do |recipient| %>
+  <% if recipient.matches.empty? %>
+    <h2><%= recipient.first_name %></h2>
+    <h2><%= recipient.age %></h2>
+    <h2><%= recipient.gender %></h2>
+    <h2><%= recipient.wish_list %></h2>
+  <% end %>
+<% end %>
+<% @donors.each do |donors| %>
+  <% if donors.matches.empty? %>
+    <h2><%= donors.first_name %></h2>
+    <h2><%= donors.age %></h2>
+    <h2><%= donors.gender %></h2>
+    <h2><%= donors.wish_list %></h2>
+  <% end %>
+<% end %>
