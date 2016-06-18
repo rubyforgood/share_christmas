@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618155925) do
+ActiveRecord::Schema.define(version: 20160618183236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,24 @@ ActiveRecord::Schema.define(version: 20160618155925) do
 
   add_index "organizations", ["volunteer_center_id"], name: "index_organizations_on_volunteer_center_id", using: :btree
 
+  create_table "recipient_families", force: :cascade do |t|
+    t.integer  "organization_campaign_id"
+    t.integer  "social_worker_id"
+    t.integer  "casenumber"
+    t.string   "contact_last_name"
+    t.string   "contact_first_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "recipient_families", ["organization_campaign_id"], name: "index_recipient_families_on_organization_campaign_id", using: :btree
+  add_index "recipient_families", ["social_worker_id"], name: "index_recipient_families_on_social_worker_id", using: :btree
+
   create_table "recipients", force: :cascade do |t|
     t.integer  "organization_campaign_id"
     t.string   "first_name"
@@ -110,9 +128,21 @@ ActiveRecord::Schema.define(version: 20160618155925) do
     t.string   "race"
     t.string   "size"
     t.string   "wish_list"
+    t.integer  "recipient_family_id"
   end
 
   add_index "recipients", ["organization_campaign_id"], name: "index_recipients_on_organization_campaign_id", using: :btree
+  add_index "recipients", ["recipient_family_id"], name: "index_recipients_on_recipient_family_id", using: :btree
+
+  create_table "social_workers", force: :cascade do |t|
+    t.integer  "assigned_number"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -150,5 +180,8 @@ ActiveRecord::Schema.define(version: 20160618155925) do
   add_foreign_key "organization_campaigns", "campaigns"
   add_foreign_key "organization_campaigns", "organizations"
   add_foreign_key "organizations", "volunteer_centers"
+  add_foreign_key "recipient_families", "organization_campaigns"
+  add_foreign_key "recipient_families", "social_workers"
   add_foreign_key "recipients", "organization_campaigns"
+  add_foreign_key "recipients", "recipient_families"
 end
