@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#home'
 
-  resources :campaigns do
+  resources :campaigns, only: :show do
   end
 
   # Example of regular route:
