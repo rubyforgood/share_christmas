@@ -153,12 +153,13 @@ ActiveRecord::Schema.define(version: 20160618181027) do
   add_index "recipients", ["recipient_family_id"], name: "index_recipients_on_recipient_family_id", using: :btree
 
   create_table "social_workers", force: :cascade do |t|
+    t.integer  "assigned_number"
     t.string   "last_name"
     t.string   "first_name"
     t.string   "email"
     t.string   "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
