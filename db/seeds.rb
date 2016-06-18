@@ -24,6 +24,10 @@ cp = vc.campaigns.create!(name: "Share Christmas 2016", donation_deadline: Date.
 
 oc = OrganizationCampaign.create!(organization: oo, campaign: cp)
 
-john = Recipient.create!(first_name: "John", last_name: "Doe", email: "JohnDoe@gmail.com", street: "Main Ave", city: "Springfield", state: "VA", zip_code: "22012", age: 25, gender: "male", race: "Hispanic", size: "M", wish_list: "Generic")
-jane = Recipient.create!(first_name: "Jane", last_name: "Doe", email: "JaneDoe@gmail.com", street: "Second St", city: "Lava", state: "CO", zip_code: "80210", age: 25, gender: "female", race: "Asian", size: "S", wish_list: "Generic")
+
+sw = SocialWorker.create!(assigned_number: 10, last_name: "Kelly", first_name: "Charlie", email: "charlie@paddys.com", phone: "555-5555")
+does = sw.recipient_families.create!(casenumber: 5, contact_last_name: "Jenkins", contact_first_name: "Leeroy", address: "33234 Something Ave", city: "Seattle", state: "FL", zip: "24567", phone: "252-281-3348")
+
+john = oc.recipients.create!(first_name: "John", last_name: "Doe", email: "JohnDoe@gmail.com", recipient_family: does, street: "Main Ave", city: "Springfield", state: "VA", zip_code: "22012", age: 25, gender: "male", race: "Hispanic", size: "M", wish_list: "Generic")
+jane = oc.recipients.create!(first_name: "Jane", last_name: "Doe", email: "JaneDoe@gmail.com", recipient_family: does, street: "Second St", city: "Lava", state: "CO", zip_code: "80210", age: 25, gender: "female", race: "Asian", size: "S", wish_list: "Generic")
 first_match = Match.create!(membership: normal_member, recipient: jane, fulfilled: true)
