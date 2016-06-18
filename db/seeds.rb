@@ -7,9 +7,27 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # TODO: change Default Admin info
-u = User.create!(email: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASSWORD'], password_confirmation: ENV['ADMIN_PASSWORD'])
-u.add_role('volunteer_center_admin')
+admin = User.create!(email: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASSWORD'], password_confirmation: ENV['ADMIN_PASSWORD'])
+admin.add_role('volunteer_center_admin')
 
-User.create!(email: ENV['USER_EMAIL'], password: ENV['USER_PASSWORD'], password_confirmation: ENV['USER_PASSWORD'])
+guest = User.create!(email: ENV['USER_EMAIL'], password: ENV['USER_PASSWORD'], password_confirmation: ENV['USER_PASSWORD'])
 
-VolunteerCenter.create(name: 'Durham, NC Volunteer Center')
+vc = VolunteerCenter.create(name: 'Durham, NC Volunteer Center')
+
+oo = vc.organizations.create!(name: "Aldersgate United Methodist Church", description: "Church", url: "https://shareyourchristmas.net/partner/aldersgate/4")
+
+admin_member = oo.memberships.create!(user: admin, send_email: false)
+normal_member = oo.memberships.create!(user: guest, send_email: true)
+
+
+cp = vc.campaigns.create!(name: "Share Christmas 2016", donation_deadline: Date.today + 5.days, reminder_date: Date.today + 2.days, description: "Christmas campaign")
+
+oc = OrganizationCampaign.create!(organization: oo, campaign: cp)
+
+
+sw = SocialWorker.create!(assigned_number: 10, last_name: "Kelly", first_name: "Charlie", email: "charlie@paddys.com", phone: "555-5555")
+does = sw.recipient_families.create!(casenumber: 5, contact_last_name: "Jenkins", contact_first_name: "Leeroy", address: "33234 Something Ave", city: "Seattle", state: "FL", zip: "24567", phone: "252-281-3348")
+
+john = oc.recipients.create!(first_name: "John", last_name: "Doe", email: "JohnDoe@gmail.com", recipient_family: does, street: "Main Ave", city: "Springfield", state: "VA", zip_code: "22012", age: 25, gender: "male", race: "Hispanic", size: "M", wish_list: "Generic")
+jane = oc.recipients.create!(first_name: "Jane", last_name: "Doe", email: "JaneDoe@gmail.com", recipient_family: does, street: "Second St", city: "Lava", state: "CO", zip_code: "80210", age: 25, gender: "female", race: "Asian", size: "S", wish_list: "Generic")
+first_match = Match.create!(membership: normal_member, recipient: jane, fulfilled: true)

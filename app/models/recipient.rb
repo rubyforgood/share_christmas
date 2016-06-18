@@ -23,6 +23,7 @@
 
 class Recipient < ActiveRecord::Base
   belongs_to :organization_campaign
+  belongs_to :recipient_family
   has_many :matches
   has_many :memberships, through: :matches
 end

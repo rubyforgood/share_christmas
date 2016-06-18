@@ -13,4 +13,7 @@
 #
 
 class SocialWorker < ActiveRecord::Base
+  has_many :recipient_families
+  
+
 end
