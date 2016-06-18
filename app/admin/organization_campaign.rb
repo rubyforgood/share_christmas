@@ -13,5 +13,12 @@ permit_params :organization_id, :campaign_id
 #   permitted
 # end
 
+form :html => { :enctype => "multipart/form-data" } do |f|
+    f.inputs "Details" do
+      f.input :organization
+      f.input :campaign
+    end
 
+    f.actions
+  end
 end

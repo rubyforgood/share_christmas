@@ -17,7 +17,10 @@
 
 class Organization < ActiveRecord::Base
   belongs_to :volunteer_center
+
   has_many :organization_campaigns
+  has_many :campaigns, through: :organization_campaigns
+
   has_many :memberships
   has_many :users, through: :memberships
 
