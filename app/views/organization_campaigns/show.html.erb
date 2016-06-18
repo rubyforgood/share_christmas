@@ -1,16 +1,20 @@
+<h2>Recipients</h2>
 <% @recipients.each do |recipient| %>
   <% if recipient.matches.empty? %>
-    <h2><%= recipient.first_name %></h2>
-    <h2><%= recipient.age %></h2>
-    <h2><%= recipient.gender %></h2>
-    <h2><%= recipient.wish_list %></h2>
+    <h3><%= recipient.first_name %></h3>
+    <h3><%= recipient.age %></h3>
+    <h3><%= recipient.gender %></h3>
+    <h3><%= recipient.wish_list %></h3>
   <% end %>
 <% end %>
-<% @donors.each do |donors| %>
-  <% if donors.matches.empty? %>
-    <h2><%= donors.first_name %></h2>
-    <h2><%= donors.age %></h2>
-    <h2><%= donors.gender %></h2>
-    <h2><%= donors.wish_list %></h2>
+
+<% if can? :manage, @organization_campaign %>
+  <h2>Donors</h2>
+  <% @donors.each do |donor| %>
+    <% if donor.matches.empty? %>
+        <h3><%= donor.user.first_name%></h3>
+        <h3><%= donor.user.last_name  %></h3>
+        <h3><%= donor.user.email %></h3>
+    <% end %>
   <% end %>
 <% end %>

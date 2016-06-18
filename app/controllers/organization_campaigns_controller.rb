@@ -1,8 +1,9 @@
 class OrganizationCampaignsController < ApplicationController
 
   def show
-    @oc = OrganizationCampaign.find(params[:id])
-    @recipients = @oc.recipients
+    @organization_campaign = OrganizationCampaign.find(params[:id])
+    @recipients = @organization_campaign.recipients
+    @donors = @organization_campaign.organization.memberships
   end
 
 end
