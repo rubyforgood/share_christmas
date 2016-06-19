@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(".toggle a").on("click", function () {
+  $(this).toggleClass("checked")
+})
