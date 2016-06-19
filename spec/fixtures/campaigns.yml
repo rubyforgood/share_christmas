@@ -7,7 +7,7 @@
 #  name                :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  description         :string
+#  description         :text
 #  donation_deadline   :date
 #  reminder_date       :date
 #  logo_file_name      :string

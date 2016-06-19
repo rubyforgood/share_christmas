@@ -25,4 +25,31 @@ ActiveAdmin.register Campaign do
 
     f.actions
   end
+
+  index do
+    selectable_column
+    id_column
+    column :created_at
+    column :name
+    column :volunteer_center
+    column :donation_deadline
+    column :reminder_date
+    html_column :description
+    image_column :logo
+    actions
+  end
+
+  show do |organization|
+    attributes_table do
+      row :id
+      row :volunteer_center
+      row :name
+      row :created_at
+      row :updated_at
+      html_row :description
+      row :donation_deadline
+      row :reminder_date
+      image_row :logo
+    end
+  end
 end
