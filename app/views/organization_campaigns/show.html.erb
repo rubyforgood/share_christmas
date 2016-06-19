@@ -31,6 +31,10 @@
       <br>
       <%= recipient.wish_list %>
     </p>
+    <%= form_for @match do |f| %>
+      <%= f.hidden_field :recipient_id, value: recipient.id %>
+      <%= f.submit %>
+    <% end %>
   </div>
   <% end %>
 </section>

@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get 'users/styleguide' => 'users#styleguide', as: :signup
 
   resources :organization_campaigns, only: :show
+  resources :matches, only: :create
 end
