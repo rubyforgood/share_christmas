@@ -1,0 +1,81 @@
+input {
+  font-size: 18px;
+  font-family: $body-font-family;
+  width: 296px;
+  height: 48px;
+  padding: 0 10px;
+  margin: 14px;
+  &[type="password"] {
+    background-color: $input-background-color;
+    border: none;
+    text-align: center;
+    color: $soft-gray;
+    &:focus {
+      outline: none;
+    }
+  }
+  &[type="submit"] {
+    background-color: #EACC96;
+    color: #FFF;
+    border: none;
+  }
+  &[type="text"] {
+    background-color: $input-background-color;
+    border: none;
+    text-align: center;
+    color: $soft-gray;
+    &:focus {
+      outline: none;
+    }
+    & ~ span {
+      display: inline-block;
+      top: 35%;
+      font-family: $body-font-family;
+      font-size: 16px;
+    }
+  }
+  &[type="radio"] {
+    position: absolute;
+    visibility: hidden;
+    &:active {
+      box-shadow: none;
+    }
+  }
+}
+
+label {
+  color: rgba(0,0,0,.45);
+  font-size: 18px;
+  font-family: $input-background-color;
+}
+.toggle {
+  width: 700px;
+  display: inline-block;
+  & > a {
+    border: none;
+    border-radius: 0;
+    padding: 20px;
+    background-color: $input-background-color;
+    cursor: pointer;
+    color: $soft-gray;
+
+    &:hover:not(.checked), &:active:not(.checked), &:focus:not(.checked) {
+      background-color: darken($input-background-color, 20%) !important;
+      outline: none;
+      & ~ .checked {
+        background-color: $input-toggle-color;
+      }
+    }
+
+    & ~ .checked {
+      background-color: $input-toggle-color;
+      box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
+      cursor: default;
+      color: #FFF;
+    }
+  }
+}
+
+.text--input--note {
+  position: relative;
+}

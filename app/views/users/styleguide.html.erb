@@ -1,0 +1,103 @@
+<section class="card--body">
+  <h2 class="">Signup to Share Happiness</h2>
+  <h2 class="decorated">Signup to Share Happiness</h2>
+  <p>
+    Welcome <strong>Mary</strong>!
+    <br>
+    If you're feeling kind and want to sign up for this campaign, please create a password.
+  </p>
+
+  <%= form_for @user, url: 'signup' do |f| %>
+    <%= label_tag :password %>
+    <br>
+    <%= password_field_tag :password %>
+    <br>
+    <%= label_tag :password_confirmation %>
+    <br>
+    <%= password_field_tag :password_confirmation  %>
+    <br>
+    <%= f.submit %>
+  <% end %>
+
+  <div class="btn-group btn-group-justified toggle" role="group" aria-label="...">
+    <a type="radio" name="gender" class="btn btn-default">Boy</a>
+    <a type="radio" name="gender" class="btn btn-default checked">Girl</a>
+  </div>
+  <div class="btn-group btn-group-justified toggle" role="group">
+    <a type="radio" role="group" name="age-group" class="btn btn-default">0-5</a>
+    <a type="radio" role="group" name="age-group" class="btn btn-default checked">6-11</a>
+    <a type="radio" role="group" name="age-group" class="btn btn-default">12-15</a>
+    <a type="radio" role="group" name="age-group" class="btn btn-default">16-18</a>
+    <a type="radio" role="group" name="age-group" class="btn btn-default">Adult</a>
+  </div>
+  <div class="text--input--note">
+    <input type="text" name="gift" placeholder="Enter Specific Items">
+    <span style="position: absolute;">(optional)</span>
+  </div>
+</section>
+<section class="card--container">
+  <div class="card--recipient">
+    <div class="card--recipient--details">
+      <span>John</span>
+    </div>
+    <div class="card--recipient--details">
+      <span>Male</span>
+    </div>
+    <div class="card--recipient--details">
+      <span>17</span>
+    </div>
+    <p>
+      Hoping to get:
+      <br>
+      lalala
+    </p>
+  </div>
+  <div class="card--recipient">
+    <div class="card--recipient--details">
+      <span>John</span>
+    </div>
+    <div class="card--recipient--details">
+      <span>Male</span>
+    </div>
+    <div class="card--recipient--details">
+      <span>17</span>
+    </div>
+    <p>
+      Hoping to get:
+      <br>
+      lalala
+    </p>
+  </div>
+  <div class="card--recipient">
+    <div class="card--recipient--details">
+      <span>John</span>
+    </div>
+    <div class="card--recipient--details">
+      <span>Male</span>
+    </div>
+    <div class="card--recipient--details">
+      <span>17</span>
+    </div>
+    <p>
+      Hoping to get:
+      <br>
+      lalala
+    </p>
+  </div>
+  <div class="card--recipient">
+    <div class="card--recipient--details">
+      <span>John</span>
+    </div>
+    <div class="card--recipient--details">
+      <span>Male</span>
+    </div>
+    <div class="card--recipient--details">
+      <span>17</span>
+    </div>
+    <p>
+      Hoping to get:
+      <br>
+      lalala
+    </p>
+  </div>
+</section>
