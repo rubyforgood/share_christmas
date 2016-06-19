@@ -1,28 +1,46 @@
-<div class="user-memberships">
-  <div class="membership">
-    <p>Hi <b><%= current_user.first_name %></b>!</p>
-    <p>You have been matched with the following people.</p>
-    <% @memberships.each do |membership| %>
-      <%= membership.organization.name %>
-      <ul class="matches">
-        <% membership.matches.each do |match| %>
-          <li class="match-name">
-            <%= match.recipient.first_name %> <%= match.recipient.last_name %>
-          </li>
-          <li class="match-gender">
-            <%= match.recipient.gender %>
-          </li>
-          <li class="match-age">
-            <%= match.recipient.age %>
-          </li>
-          <li class="match-wish-list">
-            Is looking for: <%= match.recipient.wish_list %>
-          </li>
-          <li class="match-info">
-            <%= match.recipient.email%>
-          </li>
-        <% end %>
-      </ul>
+<p class="heading--details">
+  Hi <b><%= current_user.first_name %></b>!
+  <br> You have been matched with the following people:
+</p>
+<h1><span class="text-uppercase">Send items by: <br> <%= @campaign_date.strftime("%A, %B %d, %Y") %></span></h1>
+<section>
+<% @memberships.each do |membership| %>
+  <ul class="matches">
+    <% membership.matches.each do |match| %>
+      <li class="card--body">
+        <div class="card--info--secondary">
+          <%= match.recipient.first_name %> <%= match.recipient.last_name %>
+        </div>
+        <div class="card--info--primary">
+          <%= match.recipient.gender %>
+        </div>
+        <div class="card--info--secondary">
+          <%= match.recipient.age %>
+        </div>
+        <div class="matches--details">
+          Is looking for: <br>
+          <%= match.recipient.wish_list %>
+        </div>
+        <div class="card--info">
+          <a href="mailto:<%= match.recipient.email%>"><%= match.recipient.email%></a>
+        </div>
+      </li>
     <% end %>
-  </div>
-</div>
+  </ul>
+<% end %>
+</section>
+<h1>Rules and Guidelines</h1>
+<section class="card--body">
+  <ul class="rules">
+    <li>Gift items (clothes, toys, and other items) can be in any dollar amount.
+    A suggested limit of $50 per person is used as a guideline.</li>
+
+    <li>Not all "wish list" gifts can be purchased so use your discretion.</li>
+
+    <li>Gifts should be new, not used.</li>
+
+    <li>After you purchase your gifts, please wrap them and tag them as specified above Attach the tag securely to each package.</li>
+
+    <li>Please return wrapped gifts with the appropriate name and Share Your Christmas Number and send them to supplied address.</li>
+  </ul>
+</section>
