@@ -13,9 +13,12 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 @import url(https://fonts.googleapis.com/css?family=Raleway|Quicksand);
 @import "default_theme/partials/variables";
 @import "default_theme/partials/body";
 @import "default_theme/partials/typography";
 @import "default_theme/partials/cards";
 @import "default_theme/partials/inputs";
+
+@import "default_theme/partials/users_show";

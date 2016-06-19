@@ -22,12 +22,32 @@
       padding: 10px 0;
       margin: 10px 0;
     }
-
     &:hover {
       box-shadow: 0px 0px 6px 0px $input-click-color;
     }
     &--selected {
       background-color: $input-click-color;
+      color: #FFF;
+    }
+  }
+  &--info {
+    background-color: $input-background-color;
+    text-align: center;
+    color: $soft-gray;
+    padding: 30px 50px;
+    &--primary {
+      @extend .card--info  !optional;
+      margin: 0px 56px;
+      display: inline-block;
+      background-color: $match-primary-color;
+      width: calc(calc(100% / 3) - 40px);
+    }
+    &--secondary {
+      @extend .card--info  !optional;
+      margin: 0px 0px;
+      display: inline-block;
+      background-color: $match-secondary-color;
+      width: calc(calc(100% / 3) - 40px);
     }
   }
   &--container {
