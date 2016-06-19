@@ -40,6 +40,9 @@ input {
     &:active {
       box-shadow: none;
     }
+  &[type="checkbox"] {
+    width: 18px;
+    height: 18px;
   }
 }
 
