@@ -19,5 +19,6 @@ class OrganizationCampaign < ActiveRecord::Base
 
   delegate :name, to: :campaign, prefix: true, allow_nil: true
   delegate :description, to: :campaign, prefix: true, allow_nil: true
+  delegate :logo, to: :campaign, prefix: true, allow_nil: true
   delegate :name, to: :organization, prefix: true, allow_nil: true
 end
