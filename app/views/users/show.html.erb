@@ -2,7 +2,7 @@
   Hi <b><%= current_user.first_name %></b>!
   <br> You have been matched with the following people:
 </p>
-<h1><span class="text-uppercase">Send tems by: <br> <%= @campaign_date.strftime("%A, %B %d, %Y") %></span></h1>
+<h1><span class="text-uppercase">Send items by: <br> <%= @campaign_date.strftime("%A, %B %d, %Y") %></span></h1>
 <section>
 <% @memberships.each do |membership| %>
   <ul class="matches">
