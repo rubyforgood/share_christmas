@@ -30,4 +30,4 @@ does = sw.recipient_families.create!(casenumber: 5, contact_last_name: "Jenkins"
 
 john = oc.recipients.create!(first_name: "Jimmy", last_name: "Doe", email: "jimmydoe@gmail.com", recipient_family: does, street: "Main Ave", city: "Springfield", state: "VA", zip_code: "22012", age: 11, gender: "male", race: "Hispanic", size: "M", wish_list: "Bicycle, iPad Pro, Basketball")
 jane = oc.recipients.create!(first_name: "Jane", last_name: "Doe", email: "janedoe@gmail.com", recipient_family: does, street: "Second St", city: "Lava", state: "CO", zip_code: "80210", age: 9, gender: "female", race: "Asian", size: "S", wish_list: "iPad Pro, legos")
-first_match = Match.create!(membership: normal_member, recipient: jane, fulfilled: true)
+# first_match = Match.create!(membership: normal_member, recipient: jane, fulfilled: true)

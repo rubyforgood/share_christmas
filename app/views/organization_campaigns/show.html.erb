@@ -16,22 +16,25 @@
 
 <section class="card--container">
   <% @recipients.each do |recipient| %>
-  <div class="card--recipient">
-    <div class="card--recipient--details">
-      <span><%= recipient.first_name %></span>
-    </div>
-    <div class="card--recipient--details">
-      <span><%= recipient.gender %></span>
-    </div>
-    <div class="card--recipient--details">
-      <span><%= recipient.age %></span>
-    </div>
-    <p>
-      Hoping to get:
-      <br>
-      <%= recipient.wish_list %>
-    </p>
-  </div>
+    <%= form_for @match do |f| %>
+    <%= f.hidden_field :recipient_id, value: recipient.id %>
+      <button type="submit" class="card--recipient">
+        <div class="card--recipient--details">
+          <span><%= recipient.first_name %></span>
+        </div>
+        <div class="card--recipient--details">
+          <span><%= recipient.gender %></span>
+        </div>
+        <div class="card--recipient--details">
+          <span><%= recipient.age %></span>
+        </div>
+        <p>
+          Hoping to get:
+          <br>
+          <%= recipient.wish_list %>
+        </p>
+      </button>
+    <% end %>
   <% end %>
 </section>
 
