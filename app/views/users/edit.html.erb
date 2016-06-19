@@ -1,5 +1,6 @@
 <section class="card--body">
   <h2 class="">Signup to Share Happiness</h2>
+  <h2 class="decorated">Signup to Share Happiness</h2>
   <p>
     Welcome <strong>Mary</strong>!
     <br>
@@ -18,18 +19,21 @@
     <%= f.submit %>
   <% end %>
 
-  <div class="btn-group" role="group" aria-label="...">
-    <label><input type="radio" name="gender" class="btn btn-default">Left</label>
-    <label><input type="radio" name="gender" class="btn btn-default">Middle</label>
+  <div class="btn-group btn-group-justified toggle" role="group" aria-label="...">
+    <a type="radio" name="gender" class="btn btn-default">Boy</a>
+    <a type="radio" name="gender" class="btn btn-default checked">Girl</a>
   </div>
-  <div class="btn-group" role="group" aria-label="...">
-    <label><input type="radio" name="age-group" class="btn btn-default">0-5</label>
-    <label><input type="radio" name="age-group" class="btn btn-default">6-11</label>
-    <label><input type="radio" name="age-group" class="btn btn-default">12-15</label>
-    <label><input type="radio" name="age-group" class="btn btn-default">16-18</label>
-    <label><input type="radio" name="age-group" class="btn btn-default">Adult</label>
+  <div class="btn-group btn-group-justified toggle" role="group">
+    <a type="radio" role="group" name="age-group" class="btn btn-default">0-5</a>
+    <a type="radio" role="group" name="age-group" class="btn btn-default checked">6-11</a>
+    <a type="radio" role="group" name="age-group" class="btn btn-default">12-15</a>
+    <a type="radio" role="group" name="age-group" class="btn btn-default">16-18</a>
+    <a type="radio" role="group" name="age-group" class="btn btn-default">Adult</a>
   </div>
-  <input type="text" name="gift" placeholder="Enter Specific Items"><span style="position: absolute;">(optional)</span>
+  <div class="text--input--note">
+    <input type="text" name="gift" placeholder="Enter Specific Items">
+    <span style="position: absolute;">(optional)</span>
+  </div>
 </section>
 <section class="card--container">
   <div class="card--recipient">
