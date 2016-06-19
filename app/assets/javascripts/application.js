@@ -16,5 +16,6 @@
 //= require_tree .
 
 $(".toggle a").on("click", function () {
-  $(this).toggleClass("checked")
-})
+  $(this).parent().find(".checked").removeClass("checked");
+  $(this).addClass("checked");
+});
