@@ -10,7 +10,9 @@
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  <%= image_tag asset_url("christmas_logo.png"), alt: "Logo", class: "header--logo" %>
+  <% if defined?(@organization_campaign) %>
+    <%= image_tag(@organization_campaign.campaign_logo.url, alt: "Logo", class: "header--logo") %>
+  <% end %>
   <% if session[:organization_name] %>
     <h1 class="header"><%= session[:organization_name] %></h1>
   <% end %>
