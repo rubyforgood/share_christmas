@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
-  def edit
+  def styleguide
     @user = User.new
-  end
-
-  def update
-    redirect_to :signup
   end
 end
