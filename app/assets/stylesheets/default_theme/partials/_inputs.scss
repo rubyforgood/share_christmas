@@ -66,12 +66,12 @@ label {
     &:hover:not(.checked), &:active:not(.checked), &:focus:not(.checked) {
       background-color: darken($input-background-color, 20%) !important;
       outline: none;
-      & ~ .checked {
+      &.checked {
         background-color: $input-toggle-color;
       }
     }
 
-    & ~ .checked {
+    &.checked {
       background-color: $input-toggle-color;
       box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
       cursor: default;

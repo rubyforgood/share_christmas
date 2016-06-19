@@ -1,0 +1,57 @@
+<div class="btn-group btn-group-justified toggle" role="group" aria-label="...">
+  <a type="radio" name="gender" class="btn btn-default">Boy</a>
+  <a type="radio" name="gender" class="btn btn-default">Girl</a>
+</div>
+<div class="btn-group btn-group-justified toggle" role="group">
+  <a type="radio" role="group" name="age-group" class="btn btn-default">0-5</a>
+  <a type="radio" role="group" name="age-group" class="btn btn-default">6-11</a>
+  <a type="radio" role="group" name="age-group" class="btn btn-default">12-15</a>
+  <a type="radio" role="group" name="age-group" class="btn btn-default">16-18</a>
+  <a type="radio" role="group" name="age-group" class="btn btn-default">Adult</a>
+</div>
+<div class="text--input--note">
+  <input type="text" name="gift" placeholder="Enter Specific Items">
+  <span style="position: absolute;">(optional)</span>
+</div>
+
+<section class="card--container">
+  <% @recipients.each do |recipient| %>
+  <div class="card--recipient">
+    <div class="card--recipient--details">
+      <span><%= recipient.first_name %></span>
+    </div>
+    <div class="card--recipient--details">
+      <span><%= recipient.gender %></span>
+    </div>
+    <div class="card--recipient--details">
+      <span><%= recipient.age %></span>
+    </div>
+    <p>
+      Hoping to get:
+      <br>
+      <%= recipient.wish_list %>
+    </p>
+  </div>
+  <% end %>
+</section>
+
+<% if can? :manage, @organization_campaign %>
+  <h3>Potential Donors</h3>
+  <section class="card--container">
+    <% @donors.each do |donor| %>
+    <% if donor.matches.empty? %>
+      <div class="card--recipient">
+        <div class="card--recipient--details">
+          <span><%= donor.user.first_name %></span>
+        </div>
+        <div class="card--recipient--details">
+          <span><%= donor.user.last_name %></span>
+        </div>
+        <div class="card--recipient--details">
+          <span><%= donor.user.email %></span>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </section>
+<% end %>
