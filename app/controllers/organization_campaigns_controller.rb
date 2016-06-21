@@ -5,7 +5,6 @@ class OrganizationCampaignsController < ApplicationController
     store_campaign
     @recipients = @organization_campaign.recipients
     @donors = @organization_campaign.organization.memberships
-    @match = Match.new
   end
 
   def create
