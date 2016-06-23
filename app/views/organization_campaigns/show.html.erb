@@ -1,3 +1,4 @@
+<section class="card--body">
 <div class="btn-group btn-group-justified toggle" role="group" aria-label="...">
   <a type="radio" name="gender" class="btn btn-default">Boy</a>
   <a type="radio" name="gender" class="btn btn-default">Girl</a>
@@ -11,9 +12,9 @@
 </div>
 <div class="text--input--note">
   <input type="text" name="gift" placeholder="Enter Specific Items">
-  <span style="position: absolute;">(optional)</span>
+  <span>(optional)</span>
 </div>
-
+</section>
 <section class="card--container">
   <% @recipients.each do |recipient| %>
     <%= form_for @match do |f| %>
