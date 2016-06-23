@@ -6,23 +6,23 @@
 <section>
 <% @memberships.each do |membership| %>
   <ul class="matches">
-    <% membership.matches.each do |match| %>
+    <% membership.recipients.each do |recipient| %>
       <li class="card--body">
         <div class="card--info--secondary">
-          <%= match.recipient.first_name %> <%= match.recipient.last_name %>
+          <%= recipient.first_name %> <%= recipient.last_name %>
         </div>
         <div class="card--info--primary">
-          <%= match.recipient.gender %>
+          <%= recipient.gender %>
         </div>
         <div class="card--info--secondary">
-          <%= match.recipient.age %>
+          <%= recipient.age %>
         </div>
         <div class="matches--details">
           Is looking for: <br>
-          <%= match.recipient.wish_list %>
+          <%= recipient.wish_list %>
         </div>
         <div class="card--info">
-          <a href="mailto:<%= match.recipient.email%>"><%= match.recipient.email%></a>
+          <a href="mailto:<%= recipient.email%>"><%= recipient.email%></a>
         </div>
       </li>
     <% end %>
