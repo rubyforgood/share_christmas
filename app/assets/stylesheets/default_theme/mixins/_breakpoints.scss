@@ -1,0 +1,29 @@
+/*
+* Name: Breakpoint
+* Purpose: Keep consistent breakpoints throghout the site
+* Notes: bp-extra-small is the default setting from html and css because we strive for a mobile-first design.
+*/
+
+@mixin bp-xs {
+  @media only screen and (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin bp-sm {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin bp-md {
+  @media only screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin bp-lg {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}

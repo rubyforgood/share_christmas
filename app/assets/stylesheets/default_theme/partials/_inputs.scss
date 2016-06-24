@@ -28,8 +28,6 @@ input {
       outline: none;
     }
     & ~ span {
-      display: inline-block;
-      top: 35%;
       font-family: $body-font-family;
       font-size: 16px;
     }
@@ -53,7 +51,7 @@ label {
   font-family: $input-background-color;
 }
 .toggle {
-  width: 700px;
+  width: 100%;
   display: inline-block;
   & > a {
     border: none;
@@ -82,4 +80,16 @@ label {
 
 .text--input--note {
   position: relative;
+}
+
+@include bp-sm {
+  input {
+    &[type="text"] {
+      & ~ span {
+        display: inline-block;
+        position: absolute;
+        top: 35%;
+      }
+    }
+  }
 }
