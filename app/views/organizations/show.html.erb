@@ -1,0 +1,53 @@
+<p>
+  Hello, <%= @org.name %>
+</p>
+
+<p>
+<% if @organization_campaign %>
+  Your current campaign is <%= @organization_campaign.campaign.name %>
+
+  <table>
+    <tr>
+      <th>Assigned Recipients</th>
+      <th>Matched</th>
+      <th>Percent</th>
+    </tr>
+    <tr>
+      <td><%= @organization_campaign.assigned %></td>
+      <td><%= @organization_campaign.matched %></td>
+      <td><strong><%= @organization_campaign.matched_pct %></strong></td>
+    </tr>
+  </table>
+
+<% else %>
+  You are not joined to any campaign at the moment.  Perhaps you should join one!
+<% end %>
+</p>
+
+<%= form_for @organization_campaign_new, 
+    url: {action: :create, controller: :organization_campaigns} do |f| %>
+  Join campaign: 
+  <%= f.hidden_field :organization_id %>
+  <%= f.collection_select(:campaign_id, @joinable_campaigns,:id, :name) %>
+  <%= f.submit "Join" %>
+<% end %>
+
+<% if @joined_campaigns %>
+  <%= form_tag(switch_current_campaign_organization_path(params[:id]), method: "get") do  %>
+    Switch to campaign: 
+    <%= collection_select(:organization_campaign, :campaign_id, @joined_campaigns,:id,:name) %>
+    <%= submit_tag("Switch") %>
+  <% end %>
+<% end %>
+
+<ul>
+<li><%= link_to 'Import Member Email List', import_emails_form_organization_path(@org) %></li>
+<li><%= link_to 'Member List', memberships_path(@org) %></li>
+<% if @organization_campaign %>
+  <li><%= link_to 'Send Emails', send_email_form_organization_campaign_path(@organization_campaign) %></li>
+  <li><%= link_to 'Unmatched Recipient Report', unmatched_organization_campaign_path(@organization_campaign) %></li>
+  <li><%= link_to 'Match Report', matched_organization_campaign_path(@organization_campaign) %></li>
+  <li><%= link_to 'Manually Match or Unmatch', match_form_organization_campaign_path(@organization_campaign) %></li>
+<% end %>
+<li><%= link_to 'Add or Remove Administrators', admins_organization_path(@org) %></li>
+</ul>

@@ -21,6 +21,8 @@ normal_member = oo.memberships.create!(user: guest, send_email: true)
 
 
 cp = vc.campaigns.create!(name: "Share Christmas 2016", donation_deadline: Date.today + 5.days, reminder_date: Date.today + 2.days, description: "Christmas campaign")
+cp2 = vc.campaigns.create!(name: "Backpacks 2016", donation_deadline: Date.today + 10.days, reminder_date: Date.today + 7.days, description: "Backpacks campaign")
+
 
 oc = OrganizationCampaign.create!(organization: oo, campaign: cp)
 
