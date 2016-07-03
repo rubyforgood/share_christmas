@@ -40,7 +40,7 @@ class Campaign < ActiveRecord::Base
     )
   }
 
-  scope :currently_running, -> { where("donation_deadline >= current_date") }
+  scope :currently_running, -> { where("campaigns.donation_deadline >= current_date") }
 
   scope :joinable_by, ->(org_id) { not_joined_by(org_id).currently_running }
 

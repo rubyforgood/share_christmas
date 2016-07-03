@@ -12,11 +12,10 @@ class OrganizationCampaignsController < ApplicationController
     # Create a linkage between org and campaign.  If the linkage already 
     # exists, ignore it.  Otherwise send an email to the Volunteer Center
 
-    OrganizationCampaign.find_or_create_by(organization_campaign_params) do |oc|
+    oc = OrganizationCampaign.find_or_create_by(organization_campaign_params) do |oc|
       # TODO: this is called if created.  Send email
     end 
-    redirect_to controller: :organizations, action: :show, 
-      id: params[:organization_campaign][:organization_id]
+    redirect_to oc.organization
   end
 
   private
