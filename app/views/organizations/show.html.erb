@@ -48,12 +48,12 @@
 
 <ul>
 <li><%= link_to 'Import Member Email List', import_emails_form_organization_path(@org) %></li>
-<li><%= link_to 'Member List', memberships_path(@org) %></li>
+<li><%= link_to 'Member List', memberships_path(organization: @org) %></li>
 <% if @organization_campaign %>
   <li><%= link_to 'Send Emails', send_email_form_organization_campaign_path(@organization_campaign) %></li>
-  <li><%= link_to 'Unmatched Recipient Report', unmatched_organization_campaign_path(@organization_campaign) %></li>
-  <li><%= link_to 'Match Report', matched_organization_campaign_path(@organization_campaign) %></li>
-  <li><%= link_to 'Manually Match or Unmatch', match_form_organization_campaign_path(@organization_campaign) %></li>
+  <li><%= link_to 'Unmatched Recipient Report', recipients_path(organization_campaign: @organization_campaign, matched:false, format: :print) %></li>
+  <li><%= link_to 'Match Report', recipients_path(organization_campaign: @organization_campaign, matched: true) %></li>
+  <li><%= link_to 'Manually Match or Unmatch', recipients_path(organization_campaign: @organization_campaign) %></li>
 <% end %>
-<li><%= link_to 'Add or Remove Administrators', admins_organization_path(@org) %></li>
+<li><%= link_to 'Add or Remove Administrators', users_path(organization: @org, role: :OrgAdmin) %></li>
 </ul>
