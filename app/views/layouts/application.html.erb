@@ -17,7 +17,7 @@
   <% if session[:organization_name] %>
     <h1 class="header"><%= session[:organization_name] %></h1>
   <% end %>
-  <%= yield %>
+  <%= content_for?(:content) ? yield(:content) : yield %>
   <%= javascript_include_tag 'application' %>
 </body>
 </html>

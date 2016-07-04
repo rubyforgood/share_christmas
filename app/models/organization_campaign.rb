@@ -24,4 +24,20 @@ class OrganizationCampaign < ActiveRecord::Base
   delegate :description, to: :campaign, prefix: true, allow_nil: true
   delegate :logo, to: :campaign, prefix: true, allow_nil: true
   delegate :name, to: :organization, prefix: true, allow_nil: true
+
+  def assigned
+    recipients.count
+  end
+
+  def matched
+    recipients.joins(:matches).count
+  end
+
+  def matched_pct
+    if assigned != 0
+      (matched.to_f / assigned.to_f).to_i
+    else
+      0    # Yeah, yeah I know 0/0 = infinity, but whatever.
+    end
+  end
 end
