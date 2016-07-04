@@ -42,4 +42,8 @@ class User < ActiveRecord::Base
      ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
     end
   end
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 end

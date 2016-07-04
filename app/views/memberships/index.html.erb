@@ -1,0 +1,32 @@
+<h1>Administrator List</h1>
+
+<p>
+Administrators for your organization are allowed to do the same things you can:
+import member lists, add or remove members, manually match givers and recipients, etc.
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Member Since</th>
+      <th>Last Signed On</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @memberships.each do |m| %>
+      <tr>
+        <td><%= m.name %></td>
+        <td><%= m.email %></td>
+        <td><%= m.user_created_at %></td>
+        <td><%= m.last_sign_in_at %></td>
+        <td>TODO</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

@@ -55,5 +55,5 @@
   <li><%= link_to 'Match Report', recipients_path(organization_campaign: @organization_campaign, matched: true) %></li>
   <li><%= link_to 'Manually Match or Unmatch', recipients_path(organization_campaign: @organization_campaign) %></li>
 <% end %>
-<li><%= link_to 'Add or Remove Administrators', users_path(organization: @org, role: :OrgAdmin) %></li>
+<li><%= link_to 'Add or Remove Administrators', memberships_path(organization_id: @org.id, org_admin: true) %></li>
 </ul>

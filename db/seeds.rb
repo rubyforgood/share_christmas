@@ -16,8 +16,8 @@ vc = VolunteerCenter.create(name: 'Durham, NC Volunteer Center')
 
 oo = vc.organizations.create!(name: "Aldersgate United Methodist Church", description: "Church", url: "https://shareyourchristmas.net/partner/aldersgate/4")
 
-admin_member = oo.memberships.create!(user: admin, send_email: false)
-normal_member = oo.memberships.create!(user: guest, send_email: true)
+admin_member = oo.memberships.create!(user: admin, send_email: false, org_admin: true)
+normal_member = oo.memberships.create!(user: guest, send_email: true, org_admin: false)
 
 
 cp = vc.campaigns.create!(name: "Share Christmas 2016", donation_deadline: Date.today + 5.days, reminder_date: Date.today + 2.days, description: "Christmas campaign")
