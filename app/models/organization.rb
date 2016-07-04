@@ -13,6 +13,7 @@
 #  logo_file_size      :integer
 #  logo_updated_at     :datetime
 #  url                 :string
+#  slug                :string
 #
 
 class Organization < ActiveRecord::Base

@@ -13,14 +13,15 @@
 #  logo_file_size      :integer
 #  logo_updated_at     :datetime
 #  url                 :string
+#  slug                :string
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  volunteer_center_id: 
-  name: MyString
-
-two:
-  volunteer_center_id: 
-  name: MyString
+FactoryGirl.define do
+  factory(:organization) do
+    volunteer_center
+    name 'MyString'
+    description 'MyString'
+    logo { fixture_file_upload(Rails.root.join('public', 'images', 'original', 'missing.png')) }
+    url 'MyString'
+  end
+end
