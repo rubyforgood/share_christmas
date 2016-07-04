@@ -16,12 +16,13 @@
 #  logo_updated_at     :datetime
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  references: 
-  name: MyString
-
-two:
-  references: 
-  name: MyString
+FactoryGirl.define do
+  factory(:campaign) do
+    volunteer_center
+    name 'MyString'
+    description 'MyString'
+    donation_dateline Date.today + 7
+    reminder_date Date.today + 14
+    logo { fixture_file_upload(Rails.root.join('public', 'images', 'original', 'missing.png')) }
+  end
+end
