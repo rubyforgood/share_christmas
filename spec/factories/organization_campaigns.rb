@@ -12,12 +12,12 @@
 #  donation_deadline :date
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  organization_id: 
-  campaign_id: 
-
-two:
-  organization_id: 
-  campaign_id: 
+FactoryGirl.define do
+  factory(:organization_campaign) do
+    organization
+    campaign
+    description 'MyString'
+    reminder_date Date.today + 7
+    donation_deadline Date.today + 14
+  end
+end

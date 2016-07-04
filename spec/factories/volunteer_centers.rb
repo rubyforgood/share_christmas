@@ -9,12 +9,9 @@
 #  updated_at :datetime         not null
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: MyString
-  location: MyString
-
-two:
-  name: MyString
-  location: MyString
+FactoryGirl.define do
+  factory(:volunteer_center) do
+    name 'MyString'
+    location 'MyString'
+  end
+end

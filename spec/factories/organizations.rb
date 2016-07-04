@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: campaigns
+# Table name: organizations
 #
 #  id                  :integer          not null, primary key
 #  volunteer_center_id :integer
@@ -8,20 +8,20 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  description         :text
-#  donation_deadline   :date
-#  reminder_date       :date
 #  logo_file_name      :string
 #  logo_content_type   :string
 #  logo_file_size      :integer
 #  logo_updated_at     :datetime
+#  url                 :string
+#  slug                :string
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  references: 
-  name: MyString
-
-two:
-  references: 
-  name: MyString
+FactoryGirl.define do
+  factory(:organization) do
+    volunteer_center
+    name 'MyString'
+    description 'MyString'
+    logo { fixture_file_upload(Rails.root.join('public', 'images', 'original', 'missing.png')) }
+    url 'MyString'
+  end
+end
