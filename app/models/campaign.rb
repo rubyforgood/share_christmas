@@ -46,7 +46,8 @@ class Campaign < ActiveRecord::Base
 
   # If there are overlapping campaigns, returns the one furthest out.  
   def self.current_campaign_id(org_id)
-    joined_by(org_id).order(donation_deadline: "DESC").first.id
+    last_campaign = joined_by(org_id).order(donation_deadline: "DESC").first
+    last_campaign ? last_campaign.id : -1
   end
 
 end

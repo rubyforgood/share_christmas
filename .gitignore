@@ -20,3 +20,6 @@
 /public/system
 
 .ruby-version
+
+# simplecov
+/coverage

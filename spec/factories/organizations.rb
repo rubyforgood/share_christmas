@@ -19,9 +19,15 @@
 FactoryGirl.define do
   factory(:organization) do
     volunteer_center
-    name 'MyString'
-    description 'MyString'
-    logo { fixture_file_upload(Rails.root.join('public', 'images', 'original', 'missing.png')) }
-    url 'MyString'
+    name 'United Way'
+    description 'United Way of Durham'
+    # logo { fixture_file_upload(Rails.root.join('public', 'images', 'original', 'missing.png')) }
+    url 'http://unitedwaydurham.org'
+  end
+
+  factory(:organization_lazy, class: Organization) do
+    volunteer_center
+    name 'Lazy'
+    description 'Lazy Org'
   end
 end
