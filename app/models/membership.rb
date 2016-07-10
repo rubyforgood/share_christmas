@@ -8,7 +8,6 @@
 #  send_email      :boolean
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  org_admin       :boolean
 #
 
 class Membership < ActiveRecord::Base
@@ -16,9 +15,7 @@ class Membership < ActiveRecord::Base
   belongs_to :organization
   has_many :matches
 
-  delegate :name, to: :user, allow_nil: true
-  delegate :email, to: :user, allow_nil: true
-  delegate :created_at, to: :user, prefix: true, allow_nil: true
-  delegate :last_sign_in_at, to: :user, allow_nil: true
-
+  with_options to: :user, prefix: true, allow_nil: true do |d|
+    d.delegate :name, :email, :created_at, :last_sign_in_at
+  end
 end

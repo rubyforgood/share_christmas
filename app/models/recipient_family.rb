@@ -19,5 +19,6 @@
 
 class RecipientFamily < ActiveRecord::Base
   belongs_to :social_worker
+  belongs_to :organization_campaign
   has_many :recipients
 end

@@ -24,10 +24,4 @@ FactoryGirl.define do
     # logo { fixture_file_upload(Rails.root.join('public', 'images', 'original', 'missing.png')) }
     url 'http://unitedwaydurham.org'
   end
-
-  factory(:organization_lazy, class: Organization) do
-    volunteer_center
-    name 'Lazy'
-    description 'Lazy Org'
-  end
 end

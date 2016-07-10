@@ -15,7 +15,7 @@
 require 'rails_helper'
 
 describe OrganizationCampaign do
-  let (:oc) { create(:organization_campaign) }
+  let (:oc) { FactoryGirl.create :organization_campaign }
 
   describe "Factories >" do
     it "has a valid factory" do
@@ -27,42 +27,35 @@ describe OrganizationCampaign do
   describe "Instance Methods >" do
     describe "assigned >" do
       it "returns 0 if no recipients are assigned" do
-        # The default org campaign has one recipient, so we create a separate one
-        oc2 = create(:organization_campaign_no_recipients)
-        expect(oc2.assigned).to eq 0
+        expect(oc.assigned).to eq 0
       end
 
       it "returns >0 if some recipients are assigned" do
-        # I can't get Factory to work here - get Trait not recognized.  Bluggh.
-        Recipient.create!(organization_campaign_id: oc.id)
+        FactoryGirl.create :recipient, organization_campaign: oc
         expect(oc.assigned).to eq 1
       end
     end
 
     describe "matched >" do
       it "returns 0 if no recipients are matched" do
-        # The default org campaign has one recipient, so we create a separate one
-        oc2 = create(:organization_campaign_no_recipients)
-        expect(oc2.matched).to eq 0
+        expect(oc.matched).to eq 0
       end
 
       it "returns >0 if some recipients are matched" do
-        recip = Recipient.create!(organization_campaign_id: oc.id)
-        m = Match.create!(recipient: recip)
+        r = FactoryGirl.create :recipient, organization_campaign: oc
+        FactoryGirl.create :match, recipient: r
         expect(oc.matched).to eq 1
       end
     end
 
     describe "matched_pct >" do
       it "returns 0 if no recipients are matched" do
-        # The default org campaign has one recipient, so we create a separate one
-        oc2 = create(:organization_campaign_no_recipients)
-        expect(oc2.matched_pct).to eq 0
+        expect(oc.matched_pct).to eq 0
       end
 
       it "returns >0 if some recipients are matched" do
-        recip = Recipient.create!(organization_campaign_id: oc.id)
-        m = Match.create!(recipient: recip)
+        r = FactoryGirl.create :recipient, organization_campaign: oc
+        FactoryGirl.create :match, recipient: r
         expect(oc.matched_pct).to eq 100
       end
     end

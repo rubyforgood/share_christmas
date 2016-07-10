@@ -15,7 +15,6 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  roles_mask             :integer
 #  first_name             :string
 #  last_name              :string
 #
@@ -33,23 +32,7 @@ FactoryGirl.define do
     reset_password_sent_at ''
     reset_password_token ''
     sign_in_count 1
-    roles_mask 0
     first_name "Kamasi"
     last_name "Washington"
-
-    factory(:volunteer_center_admin) do
-      roles_mask 1
-      email "stump@buffalo.com"
-      first_name "Stump"
-      last_name "Buffalo"
-    end
-
-    factory(:user_org_admin) do
-      roles_mask 2
-      email "breaking_lines@pastels.com"
-      first_name "Breaking"
-      last_name "Lines"
-    end
-
   end
 end

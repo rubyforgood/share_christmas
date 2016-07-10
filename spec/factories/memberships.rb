@@ -8,7 +8,6 @@
 #  send_email      :boolean
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  org_admin       :boolean
 #
 
 FactoryGirl.define do
@@ -16,12 +15,5 @@ FactoryGirl.define do
     organization
     user
     send_email false
-    org_admin false
-
-    factory :membership_org_admin do
-      association :user, factory: :user_org_admin
-      org_admin true
-    end
-    
   end
 end

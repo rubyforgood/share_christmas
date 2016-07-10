@@ -24,4 +24,12 @@
 require 'rails_helper'
 
 RSpec.describe Recipient, type: :model do
+  let (:r) { FactoryGirl.create :recipient }
+
+  describe "Factories >" do
+    it "has a valid factory" do
+      expect(r).to be_valid
+    end
+  end
+
 end

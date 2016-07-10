@@ -19,7 +19,7 @@
 require 'rails_helper'
 
 describe Campaign do
-  let (:c) { create(:campaign) }
+  let (:c) { FactoryGirl.create :campaign }
 
   describe "Factories >" do
     it "has a valid factory" do
@@ -30,8 +30,8 @@ describe Campaign do
   describe "Scopes >" do
     describe "not_joined_by" do
       it "returns campaigns the organization has no org_camp record for" do
-        oc = create(:organization_campaign)
-        c2 = create(:campaign_thanksgiving)
+        oc = FactoryGirl.create :organization_campaign
+        c2 = FactoryGirl.create :campaign, :thanksgiving
         expect(Campaign.not_joined_by(oc.organization_id).count).to eq 1
         expect(Campaign.not_joined_by(oc.organization_id).first.id).to eq c2.id
       end
@@ -41,12 +41,12 @@ describe Campaign do
   describe "Class Methods >" do
     describe "current_campaign_id >" do
       it "returns -1 if the organization has no campaigns" do
-        org = create(:organization_lazy)
-        expect(Campaign.current_campaign_id(org.id) == -1)
+        org2 = FactoryGirl.create :organization
+        expect(Campaign.current_campaign_id(org2.id) == -1)
       end
 
       it "returns campaign id if the organization has active campaign" do
-        oc = create(:organization_campaign)
+        oc = FactoryGirl.create :organization_campaign
         expect(Campaign.current_campaign_id(oc.organization_id) == c.id)
       end
     end

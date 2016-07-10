@@ -10,6 +10,8 @@
 #
 
 class VolunteerCenter < ActiveRecord::Base
+  resourcify
+  
   has_many :organizations
   has_many :campaigns
 end

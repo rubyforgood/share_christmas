@@ -11,9 +11,10 @@ Rails.application.routes.draw do
 
   get 'users/styleguide' => 'users#styleguide', as: :signup
 
-  resources :memberships, only: [:index, :new, :create, :edit, :update, :delete]
-  resources :matches, only: [:new, :create, :delete]
+  resources :matches, only: [:new, :create, :destroy]
   resources :organizations, only: [:show] do
+    resources :org_admins, only: [:index, :create, :destroy]
+    resources :members, only: [:index]
     member do
       get :switch_current_campaign
       get :import_emails_form

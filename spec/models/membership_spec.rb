@@ -8,7 +8,6 @@
 #  send_email      :boolean
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  org_admin       :boolean
 #
 
 require 'rails_helper'

@@ -23,7 +23,7 @@
 
 FactoryGirl.define do
   factory :recipient do
-    organization_campaign_id
+    organization_campaign
     recipient_family
     first_name "Wesley"
     last_name "Wallace"

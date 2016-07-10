@@ -20,9 +20,9 @@ class OrganizationCampaign < ActiveRecord::Base
   validates :organization_id, presence: true
   validates :campaign_id, presence: true
 
-  delegate :name, to: :campaign, prefix: true, allow_nil: true
-  delegate :description, to: :campaign, prefix: true, allow_nil: true
-  delegate :logo, to: :campaign, prefix: true, allow_nil: true
+  with_options to: :campaign, prefix: true, allow_nil: true do |d|
+    d.delegate :name, :description, :logo
+  end
   delegate :name, to: :organization, prefix: true, allow_nil: true
 
   def assigned
