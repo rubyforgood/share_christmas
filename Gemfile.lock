@@ -264,6 +264,7 @@ GEM
       json (~> 1.4)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
+    rolify (5.1.0)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -362,6 +363,7 @@ DEPENDENCIES
   rails (= 4.2.6)
   rails-erd
   rails_12factor
+  rolify
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

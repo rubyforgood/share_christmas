@@ -21,15 +21,11 @@
 #  recipient_family_id      :integer
 #
 
-require 'rails_helper'
-
-RSpec.describe Recipient, type: :model do
-  let (:r) { FactoryGirl.create :recipient }
-
-  describe "Factories >" do
-    it "has a valid factory" do
-      expect(r).to be_valid
-    end
+FactoryGirl.define do
+  factory :recipient do
+    organization_campaign
+    recipient_family
+    first_name "Wesley"
+    last_name "Wallace"
   end
-
 end

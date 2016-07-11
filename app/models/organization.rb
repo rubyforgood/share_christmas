@@ -17,6 +17,9 @@
 #
 
 class Organization < ActiveRecord::Base
+  # Use rolify to enforce org admin rights to particular users
+  resourcify
+
   belongs_to :volunteer_center
 
   has_many :organization_campaigns

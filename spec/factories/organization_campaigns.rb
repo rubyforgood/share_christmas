@@ -16,8 +16,9 @@ FactoryGirl.define do
   factory(:organization_campaign) do
     organization
     campaign
-    description 'MyString'
+    description 'Share Your Christmas 2015 for United Way'
     reminder_date Date.today + 7
     donation_deadline Date.today + 14
   end
+
 end

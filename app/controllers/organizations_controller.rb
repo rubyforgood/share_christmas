@@ -1,17 +1,18 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
   layout 'org_admin'
 
   def show
     @org = Organization.friendly.find(params[:id])
     session[:current_campaign] ||= Campaign.current_campaign_id(params[:id])
-    if session[:current_campaign]
+    if session[:current_campaign] == -1
+      @organization_campaign = nil
+    else
       @organization_campaign = OrganizationCampaign.where(
         organization_id: @org.id,
         campaign_id: session[:current_campaign]
       ).first
-    else
-      @organization_campaign = nil
     end
     @joined_campaigns = Campaign.joined_by(@org.id)
     @joinable_campaigns = Campaign.joinable_by(@org.id)

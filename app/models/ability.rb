@@ -3,14 +3,11 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    if user.roles.include? :volunteer_center_admin
-      can :manage, :all
-    elsif user.roles.include? :org_admin
-      can :manage, Organization do |org|
-        org.memberships.include? user
-      end
-    else
-      can :read, :all
-    end
+
+    can :manage, VolunteerCenter, 
+      :id => VolunteerCenter.with_role(:admin, user).pluck(:id)
+    can :manage, Organization, 
+      :id => Organization.with_role(:admin, user).pluck(:id)
+
   end
 end

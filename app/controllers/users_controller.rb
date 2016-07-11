@@ -13,4 +13,5 @@ class UsersController < ApplicationController
       @campaign_date = Date.today
     end
   end
+
 end

@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory(:volunteer_center) do
-    name 'MyString'
-    location 'MyString'
+    name 'Volunteer Center of Durham'
+    location 'Durham, NC'
   end
 end

@@ -11,7 +11,7 @@
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  <% if defined?(@organization_campaign) %>
+  <% if defined?(@organization_campaign) && defined?(@organization_campaign.campaign_logo) %>
     <%= image_tag(@organization_campaign.campaign_logo.url, alt: "Logo", class: "header--logo") %>
   <% end %>
   <% if session[:organization_name] %>

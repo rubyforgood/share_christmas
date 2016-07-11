@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords'}
+  devise_for :users, controllers: {
+    sessions: 'users/sessions', 
+    registrations: 'users/registrations', 
+    passwords: 'users/passwords'
+  }
 
   root 'pages#home'
   get "users/profile", to: "users#show", as: "user_show"
 
   get 'users/styleguide' => 'users#styleguide', as: :signup
 
-  resources :memberships, only: [:index, :new, :create, :edit, :update, :delete]
-  resources :matches, only: [:new, :create, :delete]
+  resources :matches, only: [:new, :create, :destroy]
   resources :organizations, only: [:show] do
+    resources :org_admins, only: [:index, :create, :destroy]
+    resources :members, only: [:index]
     member do
       get :switch_current_campaign
       get :import_emails_form

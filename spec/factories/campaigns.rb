@@ -19,10 +19,17 @@
 FactoryGirl.define do
   factory(:campaign) do
     volunteer_center
-    name 'MyString'
-    description 'MyString'
-    donation_dateline Date.today + 7
+    name 'Share Your Christmas 2015'
+    description 'Share Your Christmas Campaign 2015'
+    donation_deadline Date.today + 7
     reminder_date Date.today + 14
-    logo { fixture_file_upload(Rails.root.join('public', 'images', 'original', 'missing.png')) }
+    # logo { fixture_file_upload(Rails.root.join('public', 'images', 'original', 'missing.png')) }
+
+    trait :thanksgiving do
+      name 'Thanksgiving 2015'
+      description 'Thanksgiving Campaing 2015'
+      donation_deadline Date.today + 107
+      reminder_date Date.today + 114
+    end
   end
 end

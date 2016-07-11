@@ -15,12 +15,13 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  roles_mask             :integer
 #  first_name             :string
 #  last_name              :string
 #
 
 class User < ActiveRecord::Base
+  rolify
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -28,18 +29,8 @@ class User < ActiveRecord::Base
 
   has_many :memberships
   has_many :organizations, through: :memberships
-  ROLES = [:volunteer_center_admin, :org_admin]
 
-  def add_role(new_role)
-    roles = self.roles << new_role
-    roles.map! { |r| r.to_sym }
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
-    self.save
-  end
-
-  def roles
-    ROLES.reject do |r|
-     ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
-    end
+  def name
+    "#{first_name} #{last_name}"
   end
 end
