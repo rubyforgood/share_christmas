@@ -20,7 +20,6 @@ class OrganizationCampaignsController < ApplicationController
       # TODO: this is called if created.  Send email
     end 
     # For some reason, a regular redirect interferes with friendly_url
-    #crapola!
     redirect_to organization_path(id: oc.organization.id)
   end
 

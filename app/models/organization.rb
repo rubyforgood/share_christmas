@@ -34,4 +34,22 @@ class Organization < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  # TODO: String based SQL is not portable - make this nicer
+  def joinable_campaigns
+    Campaign.currently_running.where(
+      "NOT EXISTS (
+        SELECT 'X' 
+          FROM organization_campaigns oc 
+          WHERE oc.campaign_id = campaigns.id
+                AND oc.organization_id = ?
+      )", self.id
+    )
+  end
+
+  # If there are overlapping campaigns, returns the one furthest out.  
+  def current_campaign
+    return nil if campaigns.empty?
+    campaigns.order(donation_deadline: "DESC").first
+  end
+
 end

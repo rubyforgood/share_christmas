@@ -34,10 +34,8 @@ class OrganizationCampaign < ActiveRecord::Base
   end
 
   def matched_pct
-    if assigned != 0
-      ((matched.to_f / assigned.to_f) * 100.0).to_i
-    else
-      0    # Yeah, yeah I know 0/0 = infinity, but whatever.
-    end
+    return 0 if assigned == 0 # Yeah, yeah I know 0/0 = infinity, but whatever.
+
+    ((matched.to_f / assigned.to_f) * 100.0).to_i
   end
 end
