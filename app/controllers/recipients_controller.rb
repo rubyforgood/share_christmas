@@ -1,4 +1,8 @@
 class RecipientsController < ApplicationController
+  def index
+    head :not_implemented
+  end
+
   def update
     recipient = Recipient.find(params[:id])
     recipient.update(membership_id: params[:recipient][:membership_id])
