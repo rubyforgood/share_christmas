@@ -1,0 +1,16 @@
+#flash-messages {
+  position:fixed;
+  display: block;
+  width: 100%;
+  margin-top: -20px;
+
+  // flash[:notice]
+  .alert-notice {
+    @extend .alert-info;
+  }
+
+  // flash[:alert]
+  .alert-alert {
+    @extend .alert-danger;
+  }
+}
