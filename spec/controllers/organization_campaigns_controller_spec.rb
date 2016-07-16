@@ -16,7 +16,6 @@ RSpec.describe OrganizationCampaignsController, type: :controller do
       get :show, id: oc.id
       expect(assigns(:donors)).to be_empty
       expect(assigns(:recipients)).to be_empty
-      expect(assigns(:match)).to be_a_new(Match)
     end
   end
 
