@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # TODO: update to 2.3.1
-ruby "2.3.0"
+ruby '2.3.0'
 
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_skin'

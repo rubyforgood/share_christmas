@@ -28,7 +28,7 @@ class Organization < ActiveRecord::Base
   has_many :memberships
   has_many :users, through: :memberships
 
-  has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :logo, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
 
   extend FriendlyId
@@ -38,18 +38,17 @@ class Organization < ActiveRecord::Base
   def joinable_campaigns
     Campaign.currently_running.where(
       "NOT EXISTS (
-        SELECT 'X' 
-          FROM organization_campaigns oc 
+        SELECT 'X'
+          FROM organization_campaigns oc
           WHERE oc.campaign_id = campaigns.id
                 AND oc.organization_id = ?
-      )", self.id
+      )", id
     )
   end
 
-  # If there are overlapping campaigns, returns the one furthest out.  
+  # If there are overlapping campaigns, returns the one furthest out.
   def current_campaign
     return nil if campaigns.empty?
-    campaigns.order(donation_deadline: "DESC").first
+    campaigns.order(donation_deadline: 'DESC').first
   end
-
 end

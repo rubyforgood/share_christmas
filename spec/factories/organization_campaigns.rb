@@ -20,5 +20,4 @@ FactoryGirl.define do
     reminder_date Date.today + 7
     donation_deadline Date.today + 14
   end
-
 end

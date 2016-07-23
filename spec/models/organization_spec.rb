@@ -19,12 +19,12 @@
 require 'rails_helper'
 
 describe Organization do
-  describe "Scopes >" do
+  describe 'Scopes >' do
   end
 
-  describe "Class Methods >" do
-    describe "joinable_campaigns" do
-      it "returns campaigns the organization has no org_camp record for" do
+  describe 'Class Methods >' do
+    describe 'joinable_campaigns' do
+      it 'returns campaigns the organization has no org_camp record for' do
         oc = FactoryGirl.create :organization_campaign
         c2 = FactoryGirl.create :campaign, :thanksgiving
         expect(oc.organization.joinable_campaigns.count).to eq 1
@@ -32,13 +32,13 @@ describe Organization do
       end
     end
 
-    describe "current_campaign >" do
-      it "returns nil if the organization has no campaigns" do
+    describe 'current_campaign >' do
+      it 'returns nil if the organization has no campaigns' do
         org2 = FactoryGirl.create :organization
         expect(org2.current_campaign).to be_nil
       end
 
-      it "returns campaign id if the organization has active campaign" do
+      it 'returns campaign id if the organization has active campaign' do
         oc = FactoryGirl.create :organization_campaign
         expect(oc.organization.current_campaign).to eq oc.campaign
       end

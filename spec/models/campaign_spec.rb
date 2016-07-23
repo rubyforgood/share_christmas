@@ -21,8 +21,8 @@ require 'rails_helper'
 describe Campaign do
   let (:c) { FactoryGirl.create :campaign }
 
-  describe "Factories >" do
-    it "has a valid factory" do
+  describe 'Factories >' do
+    it 'has a valid factory' do
       expect(c).to be_valid
     end
   end

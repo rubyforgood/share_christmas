@@ -7,6 +7,7 @@ class MatchesController < ApplicationController
   end
 
   private
+
   def authorize_by_membership
     @recipient = Recipient.find(params[:match][:recipient_id])
     organization_id = @recipient.organization_campaign.organization_id

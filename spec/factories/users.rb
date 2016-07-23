@@ -32,7 +32,7 @@ FactoryGirl.define do
     reset_password_sent_at ''
     reset_password_token ''
     sign_in_count 1
-    first_name "Kamasi"
-    last_name "Washington"
+    first_name 'Kamasi'
+    last_name 'Washington'
   end
 end

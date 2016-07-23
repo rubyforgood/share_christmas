@@ -5,8 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-
-# before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_account_update_params, only: [:update]
   private
 
   def sign_up_params

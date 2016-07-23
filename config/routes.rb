@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {
-    sessions: 'users/sessions', 
-    registrations: 'users/registrations', 
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
     passwords: 'users/passwords'
   }
 
   root 'pages#home'
-  get "users/profile", to: "users#show", as: "user_show"
+  get 'users/profile', to: 'users#show', as: 'user_show'
 
   get 'users/styleguide' => 'users#styleguide', as: :signup
 
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       post :import_emails_form_page2
     end
   end
-  resources :organization_campaigns, only: [:show,:create] do
+  resources :organization_campaigns, only: [:show, :create] do
     member do
       get :send_email_form
     end
