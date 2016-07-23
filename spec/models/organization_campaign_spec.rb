@@ -15,7 +15,7 @@
 require 'rails_helper'
 
 describe OrganizationCampaign do
-  let (:oc) { FactoryGirl.create :organization_campaign }
+  let(:oc) { FactoryGirl.create :organization_campaign }
 
   describe 'Factories >' do
     it 'has a valid factory' do

@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
   before_action :authorize_by_membership, only: :create
 
   def create
-    match = Match.create(recipient_id: @recipient.id, membership_id: @membership.id)
+    Match.create(recipient_id: @recipient.id, membership_id: @membership.id)
     redirect_to user_show_path
   end
 

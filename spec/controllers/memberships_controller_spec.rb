@@ -22,7 +22,7 @@ RSpec.describe MembershipsController, type: :controller do
       end
 
       it 'will see current members' do
-        m = FactoryGirl.create(:membership, organization: org, user: subject.current_user)
+        FactoryGirl.create(:membership, organization: org, user: subject.current_user)
         get :index, organization_id: org.id
         expect(assigns(:memberships).count).to eq 1
       end

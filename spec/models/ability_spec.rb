@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Ability do
-  let (:u) { FactoryGirl.create :user }
-  let (:org) { FactoryGirl.create :organization }
-  let (:vc) { FactoryGirl.create :volunteer_center }
+  let(:u) { FactoryGirl.create :user }
+  let(:org) { FactoryGirl.create :organization }
+  let(:vc) { FactoryGirl.create :volunteer_center }
 
   context 'Constructors >' do
     it 'allows a user with no roles to only read stuff' do

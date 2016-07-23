@@ -43,7 +43,7 @@ RSpec.describe OrgAdminsController, type: :controller do
     it 'uses existing user, if it does exist' do
       # Need password to create a new user from scratch
       willy_smith_attr[:password] = willy_smith_attr[:password_confirmation] = 'BLUGGGGH'
-      ws = User.create!(willy_smith_attr)
+      User.create!(willy_smith_attr)
       expect do
         post :create, organization_id: org.id, user: willy_smith_attr
       end.to_not change { User.count }

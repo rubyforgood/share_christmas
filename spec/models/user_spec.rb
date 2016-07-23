@@ -22,7 +22,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let (:u) { FactoryGirl.create :user }
+  let(:u) { FactoryGirl.create :user }
 
   describe 'Factories >' do
     it 'has a valid factory' do
