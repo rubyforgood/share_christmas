@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 AllCops:
   Exclude:
     - 'db/**/*'
@@ -9,8 +7,10 @@ AllCops:
     - 'vendor/**/*'
     - 'lib/tasks/rspec.rake'
 
-# Offense count: 108
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
 # URISchemes: http, https
 Metrics/LineLength:
   Max: 100
+
+Style/Documentation:
+  Enabled: false
