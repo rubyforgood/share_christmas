@@ -1,3 +1,5 @@
+require 'concerns/form_helpers'
+
 ActiveAdmin.register Organization do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -16,7 +18,7 @@ ActiveAdmin.register Organization do
       f.input :volunteer_center, hint: 'Volunteer Center to which the Organization is assigned'
       f.input :name, hint: 'Name of the organization'
       f.input :description
-      f.input :logo, as: :file, hint: f.object.logo? ? image_tag(f.object.logo.url(:medium)) : content_tag(:span, 'Upload a PNG')
+      f.input :logo, as: :file, hint: FormHelpers.file_hint(f)
     end
 
     f.actions

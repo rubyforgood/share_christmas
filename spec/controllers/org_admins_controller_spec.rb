@@ -31,7 +31,9 @@ RSpec.describe OrgAdminsController, type: :controller do
 
   describe 'create >' do
     # Could probably do this with FactoryGirl, but whatever
-    let(:willy_smith_attr) { { first_name: 'Willy', last_name: 'Smith', email: 'wsmith@gmail.com' } }
+    let(:willy_smith_attr) do
+      { first_name: 'Willy', last_name: 'Smith', email: 'wsmith@gmail.com' }
+    end
     before(:each) { subject.current_user.add_role(:admin, org) }
 
     it "creates a new user, if a user with that email doesn't exist" do

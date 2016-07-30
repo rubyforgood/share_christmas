@@ -1,3 +1,5 @@
+require 'concerns/form_helpers'
+
 ActiveAdmin.register Campaign do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -19,7 +21,7 @@ ActiveAdmin.register Campaign do
       f.input :description
       f.input :donation_deadline
       f.input :reminder_date
-      f.input :logo, as: :file, hint: f.object.logo? ? image_tag(f.object.logo.url(:medium)) : content_tag(:span, 'Upload a PNG')
+      f.input :logo, as: :file, hint: FormHelpers.file_hint(f)
     end
 
     f.actions

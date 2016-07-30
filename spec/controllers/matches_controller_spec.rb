@@ -7,7 +7,9 @@ RSpec.describe MatchesController, type: :controller do
     context "from a member belonging to org of the recipient's org campaign >" do
       let(:oc) { FactoryGirl.create :organization_campaign }
       let(:r) { FactoryGirl.create :recipient, organization_campaign: oc }
-      let!(:m) { FactoryGirl.create :membership, organization: oc.organization, user: subject.current_user }
+      let!(:m) do
+        FactoryGirl.create :membership, organization: oc.organization, user: subject.current_user
+      end
 
       it 'creates a match' do
         expect do
