@@ -34,7 +34,7 @@ class OrganizationCampaign < ActiveRecord::Base
   end
 
   def matched_pct
-    return 0 if assigned == 0 # Yeah, yeah I know 0/0 = infinity, but whatever.
+    return 0 if assigned.zero? # Yeah, yeah I know 0/0 = infinity, but whatever.
 
     ((matched.to_f / assigned.to_f) * 100.0).to_i
   end
