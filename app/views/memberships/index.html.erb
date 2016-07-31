@@ -18,7 +18,7 @@ Members of your organization can be matched with recipients and recipient famili
         <td><%= m.user_name %></td>
         <td><%= m.user_email %></td>
         <td>
-          <%= form_for m, url: edit_organization_membership_path(@org.id, m.id) do |f| %>
+          <%= form_for m, url: edit_organization_membership_path(@org.id, m.id), method: :get do |f| %>
             <%= f.submit("Edit") %>
           <% end %>
           <%= form_for m, url: organization_membership_path(@org.id, m.id), method: :delete do |f| %>

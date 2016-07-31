@@ -15,7 +15,7 @@ class MembershipsController < ApplicationController
   def create
     # Create the user first, but don't duplicate!  Generate a phony password - this will 
     # be overwritten on the user's first login
-    nup = new_user_params
+    nup = user_params
     user = User.find_by(email: nup[:email])
     unless user 
       # Create user.
@@ -37,13 +37,27 @@ class MembershipsController < ApplicationController
     redirect_to organization_memberships_path(@org.id)
   end
 
+  def edit
+    @membership = Membership.find(params[:id])
+    @user = @membership.user
+  end
+
+  def update
+    membership = Membership.find(params[:id])
+    user = membership.user
+    eup = user_params
+    membership.update_attributes(eup[:membership])
+    user.update_attributes(eup.except(:membership))
+    redirect_to organization_memberships_path(@org.id)
+  end
+
 private
   def load_org_and_authorize 
     @org = Organization.friendly.find(params[:organization_id])
     authorize! :admin, @org
   end 
 
-  def new_user_params
+  def user_params
     params.require(:user).permit(
       :first_name, :last_name,:email,
       membership: [:send_email]
