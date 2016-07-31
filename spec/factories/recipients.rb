@@ -25,7 +25,7 @@ FactoryGirl.define do
   factory :recipient do
     organization_campaign
     recipient_family
-    first_name "Wesley"
-    last_name "Wallace"
+    first_name 'Wesley'
+    last_name 'Wallace'
   end
 end

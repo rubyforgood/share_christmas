@@ -9,16 +9,16 @@ class OrgAdminsController < ApplicationController
   def index
     @admins = User.with_role :admin, @org
     @user = User.new
-  end    
+  end
 
   def create
-    # Create the user first, but don't duplicate!  Generate a phony password - this will 
+    # Create the user first, but don't duplicate!  Generate a phony password - this will
     # be overwritten on the user's first login
     nup = new_user_params
     user = User.find_by(email: nup[:email])
-    unless user 
+    unless user
       # Create user.
-      nup[:password] = nup[:password_confirmation] = ENV['USER_PASSWORD'] 
+      nup[:password] = nup[:password_confirmation] = ENV['USER_PASSWORD']
       user = User.create!(nup)
 
       # TODO: Send a combined reset password/org admin email, else send a plain org admin email
@@ -31,18 +31,18 @@ class OrgAdminsController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    user.remove_role(:admin, Organization.find(@org.id)) 
+    user.remove_role(:admin, Organization.find(@org.id))
     redirect_to organization_org_admins_path(@org.id)
-  end 
+  end
 
-private
+  private
 
-  def load_org_and_authorize 
+  def load_org_and_authorize
     @org = Organization.friendly.find(params[:organization_id])
     authorize! :admin, @org
-  end 
+  end
 
   def new_user_params
-    params.require(:user).permit(:first_name,:last_name,:email)
+    params.require(:user).permit(:first_name, :last_name, :email)
   end
 end

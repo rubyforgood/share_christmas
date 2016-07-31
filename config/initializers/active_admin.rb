@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Share Christmas"
+  config.site_title = 'Share Christmas'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -119,7 +119,7 @@ ActiveAdmin.setup do |config|
   # This allows your users to comment on any resource registered with Active Admin.
   #
   # You can completely disable comments:
-   config.comments = false
+  config.comments = false
   #
   # You can change the name under which comments are registered:
   # config.comments_registration_name = 'AdminComment'
@@ -129,7 +129,7 @@ ActiveAdmin.setup do |config|
   # config.comments_order = 'created_at ASC'
   #
   # You can disable the menu item for the comments index page:
-   config.comments_menu = false
+  config.comments_menu = false
   #
   # You can customize the comment menu:
   # config.comments_menu = { parent: 'Admin', priority: 1 }
@@ -188,7 +188,7 @@ ActiveAdmin.setup do |config|
   # To load a stylesheet:
   #   config.register_stylesheet 'my_stylesheet.css'
   #
-  # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
+  # You can provide an options hash for more control, which is passed along to stylesheet_link_tag:
   #   config.register_stylesheet 'my_print_stylesheet.css', media: :print
   #
   # To load a javascript file:
@@ -210,7 +210,9 @@ ActiveAdmin.setup do |config|
   #
   #   config.namespace :admin do |admin|
   #     admin.build_menu :utility_navigation do |menu|
-  #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
+  #       menu.add label: "My Great Website",
+  #                url: "http://www.mygreatwebsite.com",
+  #                html_options: { target: :blank }
   #       admin.add_logout_button_to_menu menu
   #     end
   #   end
@@ -219,7 +221,9 @@ ActiveAdmin.setup do |config|
   #
   #   config.namespace :admin do |admin|
   #     admin.build_menu :default do |menu|
-  #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
+  #       menu.add label: "My Great Website",
+  #                  url: "http://www.mygreatwebsite.com",
+  #                  html_options: { target: :blank }
   #     end
   #   end
 
@@ -276,7 +280,7 @@ module ActiveAdmin
   module Views
     class TableFor
       def html_column(attribute)
-        column(attribute){ |model| model[attribute].html_safe unless model[attribute].nil? }
+        column(attribute) { |model| model[attribute].html_safe unless model[attribute].nil? }
       end
 
       def image_column(attribute)
@@ -284,23 +288,22 @@ module ActiveAdmin
       end
 
       def bool_column(attribute)
-        column(attribute){ |model| model[attribute] ? '✔'.html_safe : '✗'.html_safe }
+        column(attribute) { |model| model[attribute] ? '✔'.html_safe : '✗'.html_safe }
       end
     end
 
     class AttributesTable
       def html_row(attribute)
-        row(attribute){ |model| model[attribute].html_safe unless model[attribute].nil? }
+        row(attribute) { |model| model[attribute].html_safe unless model[attribute].nil? }
       end
 
       def image_row(attribute)
-        row(attribute){ |model| image_tag(model.send(attribute,).url(:medium)) }
+        row(attribute) { |model| image_tag(model.send(attribute).url(:medium)) }
       end
 
       def bool_row(attribute)
-        row(attribute){ |model| model[attribute] ? '✔'.html_safe : '✗'.html_safe }
+        row(attribute) { |model| model[attribute] ? '✔'.html_safe : '✗'.html_safe }
       end
     end
   end
 end
-
