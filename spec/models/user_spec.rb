@@ -22,20 +22,19 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let (:u) { FactoryGirl.create :user }
+  let(:u) { FactoryGirl.create :user }
 
-  describe "Factories >" do
-    it "has a valid factory" do
+  describe 'Factories >' do
+    it 'has a valid factory' do
       expect(u).to be_valid
     end
   end
 
-  describe "Instance Methods >" do
-    describe "name >" do
-      it "smooshes first and last name" do
-        expect(u.name).to eq "Kamasi Washington"
+  describe 'Instance Methods >' do
+    describe 'name >' do
+      it 'smooshes first and last name' do
+        expect(u.name).to eq 'Kamasi Washington'
       end
     end
   end
-
 end
