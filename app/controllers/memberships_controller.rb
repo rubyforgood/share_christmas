@@ -32,10 +32,15 @@ class MembershipsController < ApplicationController
   end
 
   def update
+    # Don't allow duplicate email if the email has been changed
     membership = Membership.find(params[:id])
-    user = membership.user
-    membership.update_attributes(user_params[:membership])
-    user.update_attributes(user_params.except(:membership))
+    if membership.user.email != user_params[:email] && User.find_by(email: user_params[:email])
+      flash[:alert] = "The email #{user_params[:email]} is already used.  " \
+                      'Remove this member, then re-add.'
+    else
+      membership.update_attributes(user_params[:membership])
+      membership.user.update_attributes(user_params.except(:membership))
+    end
     redirect_to organization_memberships_path(@org.id)
   end
 
