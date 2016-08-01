@@ -34,13 +34,8 @@ class MembershipsController < ApplicationController
   def update
     # Don't allow duplicate email if the email has been changed
     membership = Membership.find(params[:id])
-    if membership.user.email != user_params[:email] && User.find_by(email: user_params[:email])
-      flash[:alert] = "The email #{user_params[:email]} is already used.  " \
-                      'Remove this member, then re-add.'
-    else
-      membership.update_attributes(user_params[:membership])
-      membership.user.update_attributes(user_params.except(:membership))
-    end
+    membership.update(user_params[:membership])
+    flash[:alert] = update_user(membership)
     redirect_to organization_memberships_path(@org.id)
   end
 
@@ -58,6 +53,12 @@ class MembershipsController < ApplicationController
   def load_org_and_authorize
     @org = Organization.friendly.find(params[:organization_id])
     authorize! :admin, @org
+  end
+
+  def update_user(membership)
+    user = membership.user
+    user.update(user_params.except(:membership))
+    user.valid? ? nil : user.errors.full_messages.to_sentence
   end
 
   def user_params
