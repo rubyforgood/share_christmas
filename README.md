@@ -73,11 +73,11 @@ As an admin of a Volunteer Center, I want to:
   - manage all affiliated organizations
   - manage all affiliated campaigns
 
-As a Organization Campaign manage, I want to:
-  - add a new donor a organization's campaign
+As an Organization Campaign Manager, I want to:
+  - add a new donor an organization's campaign
   - add a new recipient to an organization's campaign
-  - facilitate  match between a donor and a recipient
+  - facilitate a match between a donor and a recipient
 
-As an individual Donor, I want to:
-  - register for a organization's campaign
+As an Individual Donor, I want to:
+  - register for an organization's campaign
   - choose a potential recipient to sponsor
