@@ -45,17 +45,6 @@ ActiveRecord::Schema.define(version: 20160709140246) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "matches", force: :cascade do |t|
-    t.integer  "recipient_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.boolean  "fulfilled",     default: false
-    t.integer  "membership_id"
-  end
-
-  add_index "matches", ["membership_id"], name: "index_matches_on_membership_id", using: :btree
-  add_index "matches", ["recipient_id"], name: "index_matches_on_recipient_id", using: :btree
-
   create_table "memberships", force: :cascade do |t|
     t.integer  "organization_id"
     t.integer  "user_id"
@@ -124,16 +113,19 @@ ActiveRecord::Schema.define(version: 20160709140246) do
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.integer  "age"
     t.string   "gender"
     t.string   "race"
     t.string   "size"
     t.string   "wish_list"
     t.integer  "recipient_family_id"
+    t.integer  "membership_id"
+    t.boolean  "fulfilled",                default: false
   end
 
+  add_index "recipients", ["membership_id"], name: "index_recipients_on_membership_id", using: :btree
   add_index "recipients", ["organization_campaign_id"], name: "index_recipients_on_organization_campaign_id", using: :btree
   add_index "recipients", ["recipient_family_id"], name: "index_recipients_on_recipient_family_id", using: :btree
 
@@ -193,8 +185,6 @@ ActiveRecord::Schema.define(version: 20160709140246) do
   end
 
   add_foreign_key "campaigns", "volunteer_centers"
-  add_foreign_key "matches", "memberships"
-  add_foreign_key "matches", "recipients"
   add_foreign_key "memberships", "organizations"
   add_foreign_key "memberships", "users"
   add_foreign_key "organization_campaigns", "campaigns"
@@ -202,6 +192,7 @@ ActiveRecord::Schema.define(version: 20160709140246) do
   add_foreign_key "organizations", "volunteer_centers"
   add_foreign_key "recipient_families", "organization_campaigns"
   add_foreign_key "recipient_families", "social_workers"
+  add_foreign_key "recipients", "memberships"
   add_foreign_key "recipients", "organization_campaigns"
   add_foreign_key "recipients", "recipient_families"
 end

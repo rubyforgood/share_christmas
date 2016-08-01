@@ -30,7 +30,7 @@ class OrganizationCampaign < ActiveRecord::Base
   end
 
   def matched
-    recipients.joins(:matches).count
+    recipients.matched.count
   end
 
   def matched_pct

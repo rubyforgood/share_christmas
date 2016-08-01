@@ -13,7 +13,7 @@
 class Membership < ActiveRecord::Base
   belongs_to :user
   belongs_to :organization
-  has_many :matches
+  has_many :recipients
 
   with_options to: :user, prefix: true, allow_nil: true do |d|
     d.delegate :name, :email, :created_at, :last_sign_in_at

@@ -41,8 +41,8 @@ describe OrganizationCampaign do
       end
 
       it 'returns >0 if some recipients are matched' do
-        r = FactoryGirl.create :recipient, organization_campaign: oc
-        FactoryGirl.create :match, recipient: r
+        membership = FactoryGirl.create(:membership)
+        FactoryGirl.create :recipient, organization_campaign: oc, membership: membership
         expect(oc.matched).to eq 1
       end
     end
@@ -53,8 +53,8 @@ describe OrganizationCampaign do
       end
 
       it 'returns >0 if some recipients are matched' do
-        r = FactoryGirl.create :recipient, organization_campaign: oc
-        FactoryGirl.create :match, recipient: r
+        membership = FactoryGirl.create(:membership)
+        FactoryGirl.create :recipient, organization_campaign: oc, membership: membership
         expect(oc.matched_pct).to eq 100
       end
     end

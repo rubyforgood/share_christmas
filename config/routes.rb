@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self)
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
@@ -26,6 +25,6 @@ Rails.application.routes.draw do
       get :send_email_form
     end
   end
-  resources :recipients, only: [:index]
+  resources :recipients, only: [:index, :update]
   resources :users, only: [:index, :new, :create]
 end
