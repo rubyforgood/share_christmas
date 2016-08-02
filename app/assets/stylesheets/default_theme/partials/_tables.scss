@@ -1,0 +1,19 @@
+table {
+  .text-left {
+    th, td {
+      text-align: left;
+    }
+  }
+
+  .text-right {
+    th, td {
+      text-align: right;
+    }
+  }
+
+  .text-center {
+    th, td {
+      text-align: center;
+    }
+  }
+}
