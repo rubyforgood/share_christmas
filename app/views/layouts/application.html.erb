@@ -2,12 +2,12 @@
 <html>
 <head>
   <title>ShareChristmas</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= stylesheet_link_tag 'application.print', media: 'print' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body id="<%= params[:controller].parameterize %>_controller" >
+<body id="<%= params[:controller].parameterize %>_controller">
   <%= render 'layouts/navbar' %>
   <%= render 'layouts/flash' %>
   <div class="container">
