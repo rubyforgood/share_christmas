@@ -1,0 +1,36 @@
+<%
+    header = case params[:matched]
+      when 'true' then 'Matched Recipients Report'
+      when 'false' then 'Unmatched Recipients Report'
+      else 'Recipients Report'
+    end
+%>
+
+<h2><%= header %></h2>
+<% if @organization_campaign %>
+    <p class="hidden-print">for <%= link_to @organization_campaign.campaign_name, @organization_campaign %></p>
+    <p class="visible-print">for <%= @organization_campaign.campaign_name %></p>
+<% end %>
+
+<table class="table text-left">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <% unless params[:matched] %>
+            <th>Matched</th>
+        <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <% @recipients.each do |recipient| %>
+        <tr>
+            <td><%= recipient.name %></td>
+            <td><%= recipient.email %>
+                <% unless params[:matched] %>
+                <td><%= recipient.is_matched? ? 'Yes' : 'No' %></td>
+            <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
