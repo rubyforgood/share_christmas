@@ -26,4 +26,12 @@ class Recipient < ActiveRecord::Base
   belongs_to :recipient_family
   has_many :matches
   has_many :memberships, through: :matches
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  def is_matched?
+    self.matches.count > 0
+  end
 end

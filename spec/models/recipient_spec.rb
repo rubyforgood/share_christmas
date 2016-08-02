@@ -31,4 +31,28 @@ RSpec.describe Recipient, type: :model do
       expect(r).to be_valid
     end
   end
+
+  describe 'Instance Methods >' do
+    describe 'name >' do
+      it 'smooshes first and last name' do
+        expect(r.name).to eq 'Wesley Wallace'
+      end
+    end
+
+    describe 'is_matched? >' do
+      context 'without matches >' do
+        it 'should be false' do
+          expect(r.is_matched?).to eq false
+        end
+      end
+
+      context 'with matches >' do
+        let(:r) { FactoryGirl.create :recipient, matches: [FactoryGirl.create(:match)] }
+
+        it 'should be true' do
+          expect(r.is_matched?).to eq true
+        end
+      end
+    end
+  end
 end
