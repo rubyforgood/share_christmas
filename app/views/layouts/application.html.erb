@@ -20,5 +20,12 @@
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
   <%= javascript_include_tag 'application' %>
+  <% if printer_friendly_request? %>
+    <script type="text/javascript">
+      window.onload = function() {
+        window.print();
+      };
+    </script>
+  <% end %>
 </body>
 </html>
