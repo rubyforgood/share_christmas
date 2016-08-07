@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rubyforgood/share_christmas.svg?branch=master)](https://travis-ci.org/rubyforgood/share_christmas)
+
 # Share Your Holiday
 
 It is an unfortunate reality that not every child has presents under their Christmas tree.
@@ -64,6 +66,8 @@ or by running the default rake task with
 ```
 rake
 ```
+
+We also use Rubocop to enforce a common style.  Our specific Rubocop rules are in `rubocopy.yml` for easy running.
 
 ## User Stories
 
