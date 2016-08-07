@@ -3,6 +3,7 @@
 <head>
   <title>ShareChristmas</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag 'application.print', media: 'print' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -19,5 +20,12 @@
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
   <%= javascript_include_tag 'application' %>
+  <% if printer_friendly_request? %>
+    <script type="text/javascript">
+      window.onload = function() {
+        window.print();
+      };
+    </script>
+  <% end %>
 </body>
 </html>
