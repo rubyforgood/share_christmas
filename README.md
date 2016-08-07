@@ -67,6 +67,8 @@ or by running the default rake task with
 rake
 ```
 
+We also use Rubocop to enforce a common style.  Our specific Rubocop rules are in `rubocopy.yml` for easy running.
+
 ## User Stories
 
 As an admin of a Volunteer Center, I want to:
