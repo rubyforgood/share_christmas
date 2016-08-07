@@ -9,3 +9,7 @@ addons:
 
 before_script:
   - psql -c 'create database share_christmas_test;' -U postgres
+
+branches:
+  only:
+  - master
