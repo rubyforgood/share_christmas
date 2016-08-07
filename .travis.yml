@@ -7,3 +7,5 @@ rvm:
 addons:
   postgresql: "9.5"
 
+before_script:
+  - psql -c 'create database share_christmas_test;' -U postgres
