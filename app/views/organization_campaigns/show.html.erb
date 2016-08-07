@@ -17,8 +17,8 @@
 </section>
 <section class="card--container">
   <% @recipients.each do |recipient| %>
-    <%= form_for @match do |f| %>
-    <%= f.hidden_field :recipient_id, value: recipient.id %>
+    <%= form_for recipient do |f| %>
+    <%= f.hidden_field :membership_id, value: @membership.id %>
       <button type="submit" class="card--recipient">
         <div class="card--recipient--details">
           <span><%= recipient.first_name %></span>
@@ -43,7 +43,7 @@
   <h3>Potential Donors</h3>
   <section class="card--container">
     <% @donors.each do |donor| %>
-    <% if donor.matches.empty? %>
+    <% if donor.recipients.empty? %>
       <div class="card--recipient">
         <div class="card--recipient--details">
           <span><%= donor.user.first_name %></span>

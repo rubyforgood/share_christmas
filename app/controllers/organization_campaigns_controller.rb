@@ -3,9 +3,14 @@ class OrganizationCampaignsController < ApplicationController
 
   def show
     store_campaign
+
+    @membership = Membership.find_by_organization_id_and_user_id(
+      @organization_campaign.id,
+      current_user.id
+    )
+
     @recipients = @organization_campaign.recipients
     @donors = @organization_campaign.organization.memberships
-    @match = Match.new
   end
 
   def create
