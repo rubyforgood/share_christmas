@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rubyforgood/share_christmas.svg?branch=master)](https://travis-ci.org/rubyforgood/share_christmas)
+
 # Share Your Holiday
 
 It is an unfortunate reality that not every child has presents under their Christmas tree.

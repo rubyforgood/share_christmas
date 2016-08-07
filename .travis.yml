@@ -1,0 +1,11 @@
+language: ruby
+sudo: false
+
+rvm:
+  - 2.3.0
+
+addons:
+  postgresql: "9.4"
+
+before_script:
+  - psql -c 'create database share_christmas_test;' -U postgres
