@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 # TODO: update to 2.3.1
 ruby '2.3.0'
 
-gem 'activeadmin', github: 'activeadmin'
-gem 'active_skin'
 gem 'autoprefixer-rails'
 gem 'aws-sdk', '< 2.0'
 gem 'bootstrap-sass', '~> 3.3.6'
