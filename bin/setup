@@ -28,5 +28,6 @@ Dir.chdir APP_ROOT do
   system 'rm -rf tmp/cache'
 
   puts "\n== Restarting application server =="
+  system 'mkdir tmp' unless Dir.exist?('tmp')
   system 'touch tmp/restart.txt'
 end
