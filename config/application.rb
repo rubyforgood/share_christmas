@@ -37,7 +37,5 @@ module ShareChristmas
       g.view_specs false
       g.helper_specs false
     end
-
-    # require "#{Rails.root}/lib/active_admin"
   end
 end

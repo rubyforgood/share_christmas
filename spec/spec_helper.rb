@@ -1,6 +1,5 @@
 require 'simplecov'
 SimpleCov.start 'rails' do
-  add_filter 'app/admin'
   add_filter 'app/controllers/users' # Remove ActiveAdmin
 end
 
