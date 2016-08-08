@@ -15,21 +15,34 @@ class MembershipsController < ApplicationController
   def create
     # Create the user first, but don't duplicate!  Generate a phony password - this will
     # be overwritten on the user's first login
-    user = User.find_by(email: new_user_params[:email])
+    user = User.find_by(email: user_params[:email])
     create_user_for_membership unless user
     membership = Membership.find_by(organization: @org, user: user)
     unless membership
       Membership.create!(
-        organization: @org, user: user, send_email: new_user_params[:membership][:send_email]
+        organization: @org, user: user, send_email: user_params[:membership][:send_email]
       )
     end
+    redirect_to organization_memberships_path(@org.id)
+  end
+
+  def edit
+    @membership = Membership.find(params[:id])
+    @user = @membership.user
+  end
+
+  def update
+    # Don't allow duplicate email if the email has been changed
+    membership = Membership.find(params[:id])
+    membership.update(user_params[:membership])
+    flash[:alert] = update_user(membership)
     redirect_to organization_memberships_path(@org.id)
   end
 
   private
 
   def create_user_for_membership
-    something = new_user_params.merge(
+    something = user_params.merge(
       password: ENV['USER_PASSWORD'],
       password_confirmation: ENV['USER_PASSWORD']
     )
@@ -42,7 +55,13 @@ class MembershipsController < ApplicationController
     authorize! :admin, @org
   end
 
-  def new_user_params
+  def update_user(membership)
+    user = membership.user
+    user.update(user_params.except(:membership))
+    user.valid? ? nil : user.errors.full_messages.to_sentence
+  end
+
+  def user_params
     params.require(:user).permit(
       :first_name, :last_name, :email,
       membership: [:send_email]
