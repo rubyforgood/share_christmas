@@ -7,20 +7,24 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 vc = VolunteerCenter.create(name: 'Durham, NC Volunteer Center')
-admin = User.create!(
-  email: ENV['ADMIN_EMAIL'],
-  password: ENV['ADMIN_PASSWORD'],
-  password_confirmation: ENV['ADMIN_PASSWORD'],
-  first_name: 'Mary',
-  last_name: 'Ruby'
+
+vc_admin = User.create!(
+  email: ENV['VC_ADMIN_EMAIL'],
+  password: ENV['VC_ADMIN_PASSWORD'],
+  password_confirmation: ENV['VC_ADMIN_PASSWORD'],
+  first_name: 'VC',
+  last_name: 'Admin'
 )
-admin.add_role(:admin, vc)
+vc_admin.add_role(:admin, vc)
 
 oo = vc.organizations.create!(
-  name: "Aldersgate United Methodist Church",
-  description: "Church",
-  url: "https://shareyourchristmas.net/partner/aldersgate/4"
+    name: "Aldersgate United Methodist Church",
+    description: "Church",
+    url: "https://shareyourchristmas.net/partner/aldersgate/4"
 )
+vc_admin.add_role(:admin, oo)
+
+admin_member = oo.memberships.create!(user: vc_admin, send_email: false)
 
 guest = User.create!(
   email: ENV['USER_EMAIL'],
@@ -29,10 +33,17 @@ guest = User.create!(
   first_name: 'Joe',
   last_name: 'Generous'
 )
-
-admin_member = oo.memberships.create!(user: admin, send_email: false)
-admin.add_role(:admin, oo)
 normal_member = oo.memberships.create!(user: guest, send_email: true)
+
+oo_admin = User.create!(
+    email: ENV['ORG_ADMIN_EMAIL'],
+    password: ENV['ORG_ADMIN_PASSWORD'],
+    password_confirmation: ENV['ORG_ADMIN_PASSWORD'],
+    first_name: 'Org',
+    last_name: 'Admin'
+)
+oo_admin.add_role(:admin, oo)
+
 
 cp = vc.campaigns.create!(
   name: "Share Christmas 2016",
