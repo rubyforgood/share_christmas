@@ -19,6 +19,7 @@
 
 class RecipientFamily < ActiveRecord::Base
   belongs_to :social_worker
+  # TODO: move to campaign
   belongs_to :organization_campaign
   has_many :recipients
 end

@@ -22,6 +22,7 @@
 #
 
 class Recipient < ActiveRecord::Base
+  # TODO: move to campaign
   belongs_to :organization_campaign
   belongs_to :recipient_family
   belongs_to :membership
