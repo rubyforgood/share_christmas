@@ -19,6 +19,14 @@ require 'rails_helper'
 
 describe Organization do
   describe 'Scopes >' do
+    before do
+      FactoryGirl.create(:organization, name: 'b')
+      FactoryGirl.create(:organization, name: 'a')
+    end
+
+    it 'has a scope to order organizations alphabetically' do
+      expect(Organization.alphabetical.pluck(:name)).to eq(%w(a b))
+    end
   end
 
   describe 'Class Methods >' do

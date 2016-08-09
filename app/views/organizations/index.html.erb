@@ -1,0 +1,21 @@
+<h1>All Organizations</h1>
+
+<table class="table table-striped">
+  <thead>
+    <th>Name</th>
+    <th>Description</th>
+    <th>URL</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= link_to organization.name, organization_path(organization.id) %></td>
+        <td><%= organization.description %></td>
+        <td><%= link_to organization.url %></td>
+        <td><%= link_to 'Details', organization_path(organization.id), class: 'btn btn-default' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @organizations %>

@@ -3,6 +3,10 @@ class OrganizationsController < ApplicationController
   load_and_authorize_resource
   layout 'org_admin'
 
+  def index
+    @organizations = Organization.alphabetical.paginate(page: params[:page])
+  end
+
   def show
     @org = Organization.friendly.find(params[:id])
     @organization_campaign = find_organization_campaign

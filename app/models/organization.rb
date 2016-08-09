@@ -34,6 +34,8 @@ class Organization < ActiveRecord::Base
 
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
 
+  scope :alphabetical, -> { order(:name) }
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 
