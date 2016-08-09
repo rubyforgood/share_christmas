@@ -45,12 +45,15 @@ $ bin/setup
 $ rails s
 ```
 
-Then navigate to `http://localhost:3000` in your browser to view the app. Two user accounts will be available for logging in: **User** and **Admin**. Use one of the logins to access the app:
+Then navigate to `http://localhost:3000` in your browser to view the app. Three user accounts will be available for logging in: **Volunteer Center Admin**, **Organization Admin**, and **User**. Use one of the logins to access the app:
+ * Volunteer Center Admin - Has rights for Organization management, Campaign Management, & Recipient Family management
+   * Email: `admin@vc.com`
+   * Password: `password`
+ * Organization Admin - An organization admin has fewer rights than a Volunteer Center Admin
+   * Email: `admin@org.com`
+   * Password: `password`
  * User
    * Email: `user@example.com`
-   * Password: `password`
- * Admin
-   * Email: `admin@example.com`
    * Password: `password`
 
 ## Testing
