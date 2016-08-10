@@ -6,6 +6,9 @@
     <th>Description</th>
     <th>URL</th>
     <th></th>
+    <% if can? :manage, Organization %>
+      <th></th>
+    <% end %>
   </thead>
   <tbody>
     <% @organizations.each do |organization| %>
@@ -13,7 +16,10 @@
         <td><%= link_to organization.name, organization_path(organization.id) %></td>
         <td><%= organization.description %></td>
         <td><%= link_to organization.url %></td>
-        <td><%= link_to 'Details', organization_path(organization.id), class: 'btn btn-default' %></td>
+        <td><%= link_to 'Details', organization, class: 'btn btn-default' %></td>
+        <% if can? :manage, @organization %>
+          <td><%= link_to 'Edit', edit_organization_path(organization), class: 'btn btn-primary' %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

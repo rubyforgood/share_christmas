@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :organizations, only: [:show, :index] do
+  resources :organizations, except: :destroy do
     resources :org_admins, only: [:index, :create, :destroy]
     resources :memberships
     resources :recipients, only: [:index, :edit, :update]
