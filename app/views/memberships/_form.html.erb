@@ -4,6 +4,9 @@
    organization_membership_path(@org.id, @membership.id) 
 %>
 <%= form_for @user, url: target do |f| %>
+  <% if @recipient %>
+    <%= hidden_field_tag :recipient_id, @recipient.id %>
+  <% end %>
   <%= label_tag :first_name %>
   <br>
   <%= f.text_field :first_name %>

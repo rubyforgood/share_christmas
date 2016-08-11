@@ -57,4 +57,8 @@ class Organization < ActiveRecord::Base
     return nil if campaigns.empty?
     campaigns.order(donation_deadline: 'DESC').first
   end
+
+  def memberships_sorted_by_name
+    memberships.includes(:user).order('users.last_name, users.first_name')
+  end
 end

@@ -69,7 +69,7 @@ RSpec.describe MembershipsController, type: :controller do
       expect do
         post :create, organization_id: org.id, user: willy_smith_attr
       end.to change { Membership.count }.by 1
-      expect(response).to redirect_to organization_memberships_path(org.id)
+      expect(response).to redirect_to organization_memberships_path(org)
     end
 
     it "doesn't create a membership, if it already exists" do
@@ -80,7 +80,14 @@ RSpec.describe MembershipsController, type: :controller do
       expect do
         post :create, organization_id: org.id, user: willy_smith_attr
       end.to_not change { Membership.count }
-      expect(response).to redirect_to organization_memberships_path(org.id)
+      expect(response).to redirect_to organization_memberships_path(org)
+    end
+
+    it "matches user if recipient is given" do
+      recip = FactoryGirl.create(:recipient)
+      post :create, organization_id: org.id, user: willy_smith_attr, recipient_id: recip.id
+      recip.reload
+      expect(recip.membership).to eq Membership.first
     end
   end
 
@@ -124,4 +131,17 @@ RSpec.describe MembershipsController, type: :controller do
       expect(response).to redirect_to organization_memberships_path(org.id)
     end
   end
+
+  describe 'destroy >' do
+    it 'will remove membership record and leave user record' do
+      subject.current_user.add_role(:admin, org)
+      m = FactoryGirl.create(:membership, user: subject.current_user)
+
+      expect do
+        delete :destroy, organization_id: org.id, id: m.id
+      end.to change { Membership.count }.by -1
+      expect(User.find(subject.current_user.id)).to_not be_nil
+    end
+  end
+
 end
