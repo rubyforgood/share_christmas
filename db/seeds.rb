@@ -16,6 +16,7 @@ vc_admin = User.create!(
   last_name: 'Admin'
 )
 vc_admin.add_role(:admin, vc)
+vc_admin.add_role(:admin)
 
 oo = vc.organizations.create!(
     name: "Aldersgate United Methodist Church",
