@@ -11,6 +11,13 @@ Rails.application.routes.draw do
   get 'users/styleguide' => 'users#styleguide', as: :signup
 
   resources :matches, only: [:new, :create, :destroy]
+
+  resources :campaigns do
+    member do
+      get :switch_current_campaign
+    end
+  end
+
   resources :organizations, only: [:show] do
     resources :org_admins, only: [:index, :create, :destroy]
     resources :memberships
