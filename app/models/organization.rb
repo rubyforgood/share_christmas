@@ -21,7 +21,6 @@ class Organization < ActiveRecord::Base
 
   has_many :organization_campaigns
   has_many :campaigns, through: :organization_campaigns
-
   has_many :memberships
   has_many :users, through: :memberships
 
@@ -33,6 +32,10 @@ class Organization < ActiveRecord::Base
                     default_url: '/images/:style/missing.png'
 
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
+
+  # TODO: When dealing with multiple volunteer centers, we may have multiple organizations
+  # with the same name. We may have to add `scope: :volunteer_center_id`
+  validates :name, presence: true, uniqueness: true
 
   scope :alphabetical, -> { order(:name) }
 

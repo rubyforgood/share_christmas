@@ -94,7 +94,7 @@ RSpec.describe MembershipsController, type: :controller do
   describe 'edit >' do
     it 'will look up user and membership record' do
       subject.current_user.add_role(:admin, org)
-      m = FactoryGirl.create(:membership, user: subject.current_user)
+      m = FactoryGirl.create(:membership, user: subject.current_user, organization: org)
 
       get :edit, organization_id: org.id, id: m.id
       expect(assigns(:user)).to eq m.user
@@ -105,7 +105,7 @@ RSpec.describe MembershipsController, type: :controller do
   describe 'update >' do
     # This literally changes the logged-in user's record underneath, but
     # there's no real problem with that.
-    let(:m) { FactoryGirl.create(:membership, user: subject.current_user) }
+    let(:m) { FactoryGirl.create(:membership, user: subject.current_user, organization: org) }
     let(:willy_smith_user_attr) { willy_smith_attr.except(:membership) }
     before(:each) { subject.current_user.add_role(:admin, org) }
 
