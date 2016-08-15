@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709140246) do
+ActiveRecord::Schema.define(version: 20160807191153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20160709140246) do
 
   create_table "recipient_families", force: :cascade do |t|
     t.integer  "organization_campaign_id"
-    t.integer  "social_worker_id"
     t.integer  "casenumber"
     t.string   "contact_last_name"
     t.string   "contact_first_name"
@@ -102,7 +101,6 @@ ActiveRecord::Schema.define(version: 20160709140246) do
   end
 
   add_index "recipient_families", ["organization_campaign_id"], name: "index_recipient_families_on_organization_campaign_id", using: :btree
-  add_index "recipient_families", ["social_worker_id"], name: "index_recipient_families_on_social_worker_id", using: :btree
 
   create_table "recipients", force: :cascade do |t|
     t.integer  "organization_campaign_id"
@@ -139,16 +137,6 @@ ActiveRecord::Schema.define(version: 20160709140246) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
-
-  create_table "social_workers", force: :cascade do |t|
-    t.integer  "assigned_number"
-    t.string   "last_name"
-    t.string   "first_name"
-    t.string   "email"
-    t.string   "phone"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -191,7 +179,6 @@ ActiveRecord::Schema.define(version: 20160709140246) do
   add_foreign_key "organization_campaigns", "organizations"
   add_foreign_key "organizations", "volunteer_centers"
   add_foreign_key "recipient_families", "organization_campaigns"
-  add_foreign_key "recipient_families", "social_workers"
   add_foreign_key "recipients", "memberships"
   add_foreign_key "recipients", "organization_campaigns"
   add_foreign_key "recipients", "recipient_families"

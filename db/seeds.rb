@@ -61,14 +61,7 @@ cp2 = vc.campaigns.create!(
 
 oc = OrganizationCampaign.create!(organization: oo, campaign: cp)
 
-sw = SocialWorker.create!(
-  assigned_number: 10,
-  last_name: "Kelly",
-  first_name: "Charlie",
-  email: "charlie@paddys.com",
-  phone: "555-5555"
-)
-does = sw.recipient_families.create!(
+rf = oc.recipient_families.create!(
   casenumber: 5,
   contact_last_name: "Jenkins",
   contact_first_name: "Leeroy",
@@ -79,11 +72,10 @@ does = sw.recipient_families.create!(
   phone: "252-281-3348"
 )
 
-john = oc.recipients.create!(
+john = rf.recipients.create!(
   first_name: "Jimmy",
   last_name: "Doe",
   email: "jimmydoe@gmail.com",
-  recipient_family: does,
   street: "Main Ave",
   city: "Springfield",
   state: "VA",
@@ -94,11 +86,10 @@ john = oc.recipients.create!(
   size: "M",
   wish_list: "Bicycle, iPad Pro, Basketball"
 )
-jane = oc.recipients.create!(
+jane = rf.recipients.create!(
   first_name: "Jane",
   last_name: "Doe",
   email: "janedoe@gmail.com",
-  recipient_family: does,
   street: "Second St",
   city: "Lava",
   state: "CO",
