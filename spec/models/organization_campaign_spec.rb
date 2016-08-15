@@ -25,37 +25,55 @@ describe OrganizationCampaign do
 
   describe 'Instance Methods >' do
     describe 'assigned >' do
-      it 'returns 0 if no recipients are assigned' do
-        expect(oc.assigned).to eq 0
+      context 'with no recipients assigned> ' do
+        it 'returns 0' do
+          expect(oc.assigned).to eq 0
+        end
       end
 
-      it 'returns >0 if some recipients are assigned' do
-        FactoryGirl.create :recipient, organization_campaign: oc
-        expect(oc.assigned).to eq 1
+      context 'with some recipients assigned' do
+        let!(:rf) {FactoryGirl.create :recipient_family, organization_campaign: oc}
+        let!(:recipient) { FactoryGirl.create :recipient, recipient_family: rf }
+
+        it 'returns >0 if some recipients are assigned' do
+          expect(oc.assigned).to eq 1
+        end
       end
     end
 
     describe 'matched >' do
-      it 'returns 0 if no recipients are matched' do
-        expect(oc.matched).to eq 0
+      context 'with no recipients matched' do
+        it 'returns 0' do
+          expect(oc.matched).to eq 0
+        end
       end
 
-      it 'returns >0 if some recipients are matched' do
-        membership = FactoryGirl.create(:membership)
-        FactoryGirl.create :recipient, organization_campaign: oc, membership: membership
-        expect(oc.matched).to eq 1
+      context 'with some recipients matched' do
+        let!(:membership) { FactoryGirl.create :membership  }
+        let!(:rf) {FactoryGirl.create :recipient_family, organization_campaign: oc}
+        let!(:recipient) { FactoryGirl.create :recipient, recipient_family: rf, organization_campaign: oc, membership: membership }
+
+        it 'returns >0' do
+          expect(oc.matched).to eq 1
+        end
       end
     end
 
     describe 'matched_pct >' do
-      it 'returns 0 if no recipients are matched' do
-        expect(oc.matched_pct).to eq 0
+      context 'with no recipients matched' do
+        it 'returns 0' do
+          expect(oc.matched_pct).to eq 0
+        end
       end
 
-      it 'returns >0 if some recipients are matched' do
-        membership = FactoryGirl.create(:membership)
-        FactoryGirl.create :recipient, organization_campaign: oc, membership: membership
-        expect(oc.matched_pct).to eq 100
+      context 'with some recipients matched' do
+        let!(:membership) { FactoryGirl.create :membership  }
+        let!(:rf) {FactoryGirl.create :recipient_family, organization_campaign: oc}
+        let!(:recipient) { FactoryGirl.create :recipient, recipient_family: rf, organization_campaign: oc, membership: membership }
+
+        it 'returns >0 if some recipients are matched' do
+          expect(oc.matched_pct).to eq 100
+        end
       end
     end
   end

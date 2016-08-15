@@ -1,0 +1,64 @@
+<p>
+  <%= "#{@recipient.first_name} #{@recipient.last_name} family" %>
+  <% if current_user.has_role? :admin %>
+    <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe, edit_recipient_path(@recipient) %>
+    <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, recipient_path(@recipient), method: :delete %>
+  <% end %>
+</p>
+
+<p>
+  Campaign: <%= @recipient.organization_campaign.campaign_name %>
+</p>
+
+<p>
+  First name: <%= @recipient.first_name %>
+</p>
+
+<p>
+  Last name: <%= @recipient.last_name %>
+</p>
+
+<p>
+  Email: <%= @recipient.email %>
+</p>
+
+<p>
+  Street: <%= @recipient.street %>
+</p>
+
+<p>
+  City: <%= @recipient.city %>
+</p>
+
+<p>
+  State: <%= @recipient.state %>
+</p>
+
+<p>
+  Zip: <%= @recipient.zip_code %>
+</p>
+
+<p>
+  Age: <%= @recipient.age %>
+</p>
+
+<p>
+  Gender: <%= @recipient.gender %>
+</p>
+
+<p>
+  Race: <%= @recipient.race %>
+</p>
+
+<p>
+  Size: <%= @recipient.size %>
+</p>
+
+<p>
+  Wish list: <%= @recipient.wish_list %>
+</p>
+
+<p>
+  Recipient family: <%= link_to "#{@recipient.recipient_family.contact_last_name} #{@recipient.recipient_family.contact_first_name}",
+                                recipient_family_path(@recipient.recipient_family) %>
+</p>

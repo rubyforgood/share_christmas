@@ -1,0 +1,18 @@
+<% @grouped_recipients.each do |recipient_family, recipients| %>
+  <p><%= "#{recipient_family.contact_last_name} #{recipient_family.contact_first_name} family" %></p>
+
+  <% recipients.each do |recipient| %>
+    <%= link_to "#{recipient.first_name} #{recipient.last_name}", recipient %>
+    <% if current_user.has_role? :admin %>
+      <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe, edit_recipient_path(recipient) %>
+      <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, recipient_path(recipient), method: :delete %>
+    <% end %>
+    <br>
+  <% end %>
+<% end %>
+
+<% if current_user.has_role? :admin %>
+    <br>
+    <br>
+    <%= link_to 'Add new recipient family'.html_safe, new_recipient_path %>
+<% end %>

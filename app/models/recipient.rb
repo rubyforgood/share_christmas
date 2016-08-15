@@ -22,8 +22,8 @@
 #
 
 class Recipient < ActiveRecord::Base
-  belongs_to :organization_campaign
   belongs_to :recipient_family
+  has_one :organization_campaign, through: :recipient_family
   belongs_to :membership
 
   scope :matched, -> { where.not(membership_id: nil) }

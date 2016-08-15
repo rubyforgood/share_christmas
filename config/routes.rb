@@ -32,6 +32,12 @@ Rails.application.routes.draw do
       get :send_email_form
     end
   end
-  resources :recipients, only: [:index, :update]
+
+  resources :recipient_families
+  resources :recipients do
+    member do
+      post :match
+    end
+  end
   resources :users, only: [:index, :new, :create]
 end

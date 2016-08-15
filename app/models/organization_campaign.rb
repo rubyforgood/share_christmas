@@ -15,7 +15,8 @@
 class OrganizationCampaign < ActiveRecord::Base
   belongs_to :organization
   belongs_to :campaign
-  has_many :recipients
+  has_many :recipient_families
+  has_many :recipients, through: :recipient_families
 
   validates :organization_id, presence: true
   validates :campaign_id, presence: true

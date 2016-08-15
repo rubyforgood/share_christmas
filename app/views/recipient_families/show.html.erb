@@ -1,0 +1,31 @@
+<p>
+  <%= "#{@recipient_family.contact_last_name} #{@recipient_family.contact_first_name} family" %>
+  <% if current_user.has_role? :admin %>
+    <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe, edit_recipient_family_path(@recipient_family) %>
+    <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, recipient_family_path(@recipient_family), method: :delete %>
+  <% end %>
+</p>
+
+<p>
+  <%= link_to 'Add a recipient', new_recipient_path(recipient_family: @recipient_family) %>
+</p>
+
+<p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Recipients</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @recipient_family.recipients.each do |recipient| %>
+        <tr>
+          <td>
+            <%= "#{recipient.first_name} #{recipient.last_name}" %>
+          </td>
+        </tr>
+    <% end %>
+
+    </tbody>
+  </table>
+</p>

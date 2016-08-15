@@ -1,0 +1,31 @@
+<%= form_for @recipient_family do |f| %>
+  <%= label_tag :contact_first_name %>
+  <br>
+  <%= f.text_field :contact_first_name %>
+  <br>
+  <%= label_tag :contact_last_name %>
+  <br>
+  <%= f.text_field :contact_last_name %>
+  <br>
+  <%= label_tag :address %>
+  <br>
+  <%= f.text_field :address %>
+  <br>
+  <%= label_tag :city %>
+  <br>
+  <%= f.text_field :city %>
+  <br>
+  <%= label_tag :state %>
+  <br>
+  <%= f.text_field :state %>
+  <br>
+  <%= label_tag :zip %>
+  <br>
+  <%= f.text_field :zip %>
+  <br>
+  <%= label_tag :phone %>
+  <br>
+  <%= f.text_field :phone %>
+  <br>
+  <%= f.submit %>
+<% end %>

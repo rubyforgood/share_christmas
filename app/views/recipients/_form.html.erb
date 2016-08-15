@@ -1,0 +1,75 @@
+<%= form_for @recipient do |f| %>
+  <p>
+    Campaign: <%= @recipient.organization_campaign.campaign_name %>
+  </p>
+
+  <%= f.hidden_field :recipient_family_id, value: @recipient.recipient_family.id %>
+
+  <%= f.hidden_field :organization_campaign_id, value: @recipient.organization_campaign.id %>
+
+  <%= label_tag :first_name %>
+  <br>
+  <%= f.text_field :first_name %>
+  <br>
+
+  <%= label_tag :last_name %>
+  <br>
+  <%= f.text_field :last_name %>
+  <br>
+
+  <%= label_tag :email %>
+  <br>
+  <%= f.text_field :email %>
+  <br>
+
+  <%= label_tag :street %>
+  <br>
+  <%= f.text_field :street %>
+  <br>
+
+  <%= label_tag :city %>
+  <br>
+  <%= f.text_field :city %>
+  <br>
+
+  <%= label_tag :state %>
+  <br>
+  <%= f.text_field :state %>
+  <br>
+
+  <%= label_tag :zip_code %>
+  <br>
+  <%= f.text_field :zip_code %>
+  <br>
+
+  <%= label_tag :age %>
+  <br>
+  <%= f.text_field :age %>
+  <br>
+
+  <%= label_tag :gender %>
+  <br>
+  <%= f.text_field :gender %>
+  <br>
+
+  <%= label_tag :race %>
+  <br>
+  <%= f.text_field :race %>
+  <br>
+
+  <%= label_tag :size %>
+  <br>
+  <%= f.text_field :size %>
+  <br>
+
+  <%= label_tag :wish_list %>
+  <br>
+  <%= f.text_field :wish_list %>
+  <br>
+
+  <p>
+    Recipient family: <%= "#{@recipient.recipient_family.contact_last_name} #{@recipient.recipient_family.contact_first_name} family" %>
+  </p>
+
+  <%= f.submit %>
+<% end %>
