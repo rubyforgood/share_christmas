@@ -28,18 +28,17 @@ class Recipient < ActiveRecord::Base
 
   scope :matched, -> { where.not(membership_id: nil) }
 
-  def name 
+  def name
     "#{first_name} #{last_name}"
   end
 
   # Race and size are only listed where relevant, for dolls and clothes respectively
   def other_details
-    [ race.blank? ? nil : "Race: #{race}",
-      size.blank? ? nil : "Size: #{size}"
-    ].compact.join(", ")
+    [race.blank? ? nil : "Race: #{race}",
+     size.blank? ? nil : "Size: #{size}"].compact.join(', ')
   end
 
   def matched?
-    ! membership_id.nil?
+    membership_id.present?
   end
 end

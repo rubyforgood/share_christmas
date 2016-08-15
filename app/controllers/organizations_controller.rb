@@ -15,5 +15,4 @@ class OrganizationsController < ApplicationController
     session[:current_campaign] = params[:organization_campaign][:campaign_id]
     redirect_to organization_path(params[:id])
   end
-
 end

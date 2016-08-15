@@ -15,14 +15,12 @@ class MembershipsController < ApplicationController
   def create
     # Create the user first, but don't duplicate!  Generate a phony password - this will
     # be overwritten on the user's first login
-    user = User.find_by(email: user_params[:email])
-    user = create_user_for_membership unless user
-    membership = Membership.find_by(organization: @org, user: user)
-    unless membership
-      membership = Membership.create!(
+    user = User.find_by(email: user_params[:email]) || create_user_for_membership
+    membership =
+      Membership.find_by(organization: @org, user: user) ||
+      Membership.create!(
         organization: @org, user: user, send_email: user_params[:membership][:send_email]
       )
-    end
     # If there's also a recipient, match with that recipient
     if params[:recipient_id]
       recipient = Recipient.find(params[:recipient_id])
@@ -50,7 +48,7 @@ class MembershipsController < ApplicationController
     membership = Membership.find(params[:id])
     membership.destroy!
     redirect_to organization_memberships_path(@org.id)
-  end        
+  end
 
   private
 

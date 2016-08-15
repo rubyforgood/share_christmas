@@ -24,5 +24,4 @@ class ApplicationController < ActionController::Base
       session[:current_campaign]
     )
   end
-  
 end

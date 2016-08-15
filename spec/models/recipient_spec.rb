@@ -34,37 +34,36 @@ RSpec.describe Recipient, type: :model do
 
   describe 'Instance Methods >' do
     describe 'name' do
-      it "returns full name" do
-        expect(r.name).to eq "Wesley Wallace"
+      it 'returns full name' do
+        expect(r.name).to eq 'Wesley Wallace'
       end
     end
 
     describe 'other_details' do
-      it "returns blank string if neither race nor size is recorded" do
-        expect(r.other_details).to eq ""
+      it 'returns blank string if neither race nor size is recorded' do
+        expect(r.other_details).to eq ''
       end
 
-      it "returns Race if race is recorded" do
-        r2 = FactoryGirl.create(:recipient, race: "African-American")
-        expect(r2.other_details).to eq "Race: African-American"
+      it 'returns Race if race is recorded' do
+        r2 = FactoryGirl.create(:recipient, race: 'African-American')
+        expect(r2.other_details).to eq 'Race: African-American'
       end
 
-      it "returns Race and size if both are recorded" do
-        r2 = FactoryGirl.create(:recipient, race: "African-American, Size: 4")
-        expect(r2.other_details).to eq "Race: African-American, Size: 4"
+      it 'returns Race and size if both are recorded' do
+        r2 = FactoryGirl.create(:recipient, race: 'African-American, Size: 4')
+        expect(r2.other_details).to eq 'Race: African-American, Size: 4'
       end
     end
 
     describe 'matched?' do
-      it "returns false if no membership filled in" do
+      it 'returns false if no membership filled in' do
         expect(r).to_not be_matched
       end
 
-      it "returns true if membership filled in" do
+      it 'returns true if membership filled in' do
         r.membership_id = 666
         expect(r).to be_matched
       end
     end
-
   end
 end

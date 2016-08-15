@@ -25,5 +25,4 @@ class RecipientsController < ApplicationController
       redirect_to user_show_path
     end
   end
-
 end
