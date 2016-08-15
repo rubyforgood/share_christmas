@@ -3,7 +3,6 @@
 # Table name: organizations
 #
 #  id                  :integer          not null, primary key
-#  volunteer_center_id :integer
 #  name                :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -19,8 +18,6 @@
 class Organization < ActiveRecord::Base
   # Use rolify to enforce org admin rights to particular users
   resourcify
-
-  belongs_to :volunteer_center
 
   has_many :organization_campaigns
   has_many :campaigns, through: :organization_campaigns

@@ -3,7 +3,6 @@
 # Table name: organizations
 #
 #  id                  :integer          not null, primary key
-#  volunteer_center_id :integer
 #  name                :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -18,7 +17,6 @@
 
 FactoryGirl.define do
   factory(:organization) do
-    volunteer_center
     name 'United Way'
     description 'United Way of Durham'
     # logo { fixture_file_upload(Rails.root.join('public', 'images', 'original', 'missing.png')) }

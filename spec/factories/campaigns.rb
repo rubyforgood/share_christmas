@@ -3,7 +3,6 @@
 # Table name: campaigns
 #
 #  id                  :integer          not null, primary key
-#  volunteer_center_id :integer
 #  name                :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -18,7 +17,6 @@
 
 FactoryGirl.define do
   factory(:campaign) do
-    volunteer_center
     name 'Share Your Christmas 2015'
     description 'Share Your Christmas Campaign 2015'
     donation_deadline Date.today + 7
