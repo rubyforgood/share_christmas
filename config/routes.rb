@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :organizations, only: [:show] do
     resources :org_admins, only: [:index, :create, :destroy]
     resources :memberships
+    resources :recipients, only: [:index, :edit, :update]
     member do
       get :switch_current_campaign
       get :import_emails_form

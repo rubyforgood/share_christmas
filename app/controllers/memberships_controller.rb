@@ -4,7 +4,7 @@ class MembershipsController < ApplicationController
   layout 'org_admin'
 
   def index
-    @memberships = @org.memberships.includes(:user).order('users.last_name, users.first_name')
+    @memberships = @org.memberships_sorted_by_name
   end
 
   def new
@@ -15,15 +15,20 @@ class MembershipsController < ApplicationController
   def create
     # Create the user first, but don't duplicate!  Generate a phony password - this will
     # be overwritten on the user's first login
-    user = User.find_by(email: user_params[:email])
-    create_user_for_membership unless user
-    membership = Membership.find_by(organization: @org, user: user)
-    unless membership
+    user = User.find_by(email: user_params[:email]) || create_user_for_membership
+    membership =
+      Membership.find_by(organization: @org, user: user) ||
       Membership.create!(
         organization: @org, user: user, send_email: user_params[:membership][:send_email]
       )
+    # If there's also a recipient, match with that recipient
+    if params[:recipient_id]
+      recipient = Recipient.find(params[:recipient_id])
+      recipient.update!(membership: membership)
+      redirect_to organization_recipients_path(@org)
+    else
+      redirect_to organization_memberships_path(@org)
     end
-    redirect_to organization_memberships_path(@org.id)
   end
 
   def edit
@@ -39,6 +44,12 @@ class MembershipsController < ApplicationController
     redirect_to organization_memberships_path(@org.id)
   end
 
+  def destroy
+    membership = Membership.find(params[:id])
+    membership.destroy!
+    redirect_to organization_memberships_path(@org.id)
+  end
+
   private
 
   def create_user_for_membership
@@ -48,11 +59,6 @@ class MembershipsController < ApplicationController
     )
     # TODO: If send_email is checked, send a reset password email
     User.create!(something.except(:membership))
-  end
-
-  def load_org_and_authorize
-    @org = Organization.friendly.find(params[:organization_id])
-    authorize! :admin, @org
   end
 
   def update_user(membership)

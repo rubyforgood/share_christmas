@@ -53,7 +53,7 @@
   <li><%= link_to 'Send Emails', send_email_form_organization_campaign_path(@organization_campaign) %></li>
   <li><%= link_to 'Unmatched Recipient Report', recipients_path(organization_campaign: @organization_campaign, matched:false, format: :print) %></li>
   <li><%= link_to 'Match Report', recipients_path(organization_campaign: @organization_campaign, matched: true) %></li>
-  <li><%= link_to 'Manually Match or Unmatch', recipients_path(organization_campaign: @organization_campaign) %></li>
+  <li><%= link_to 'Manually Match or Unmatch', organization_recipients_path(@org) %></li>
 <% end %>
-<li><%= link_to 'Add or Remove Administrators', organization_org_admins_path(@org.id) %></li>
+<li><%= link_to 'Add or Remove Administrators', organization_org_admins_path(@org) %></li>
 </ul>
