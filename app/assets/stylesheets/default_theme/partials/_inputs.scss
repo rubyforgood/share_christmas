@@ -41,6 +41,15 @@ input {
       outline: none;
     }
   }
+  &[type="file"] {
+    background-color: $input-background-color;
+    border: none;
+    margin: 0 auto;
+    color: $soft-gray;
+    &:focus {
+      outline: none;
+    }
+  }
   &[type="radio"] {
     position: absolute;
     visibility: hidden;
