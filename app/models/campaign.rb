@@ -3,7 +3,6 @@
 # Table name: campaigns
 #
 #  id                  :integer          not null, primary key
-#  volunteer_center_id :integer
 #  name                :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -17,7 +16,6 @@
 #
 
 class Campaign < ActiveRecord::Base
-  belongs_to :volunteer_center
   has_many :organization_campaigns
 
   has_attached_file :logo,
