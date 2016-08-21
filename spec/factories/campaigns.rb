@@ -2,17 +2,17 @@
 #
 # Table name: campaigns
 #
-#  id                  :integer          not null, primary key
-#  name                :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  description         :text
-#  donation_deadline   :date
-#  reminder_date       :date
-#  logo_file_name      :string
-#  logo_content_type   :string
-#  logo_file_size      :integer
-#  logo_updated_at     :datetime
+#  id                :integer          not null, primary key
+#  name              :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  description       :text
+#  donation_deadline :date
+#  reminder_date     :date
+#  logo_file_name    :string
+#  logo_content_type :string
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
 #
 
 FactoryGirl.define do
