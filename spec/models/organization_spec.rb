@@ -21,7 +21,7 @@ describe Organization do
   describe 'Scopes >' do
   end
 
-  describe 'Class Methods >' do
+  describe 'Instance Methods >' do
     describe 'joinable_campaigns' do
       it 'returns campaigns the organization has no org_camp record for' do
         oc = FactoryGirl.create :organization_campaign
@@ -40,6 +40,21 @@ describe Organization do
       it 'returns campaign id if the organization has active campaign' do
         oc = FactoryGirl.create :organization_campaign
         expect(oc.organization.current_campaign).to eq oc.campaign
+      end
+    end
+
+    describe 'memberships_with_email >' do
+      # TODO: Currently we can't really test this because we can't create users without
+      # an email address.  This will be fixed with Issue #143.
+      it 'only returns membership records where the user has an email address' do
+        m1 = FactoryGirl.create :membership
+        user_without_email = User.create(
+          first_name: 'Willy', last_name: 'Smith', email: 'wsmith@gmail.com',
+          password: 'BLUGGGGH', password_confirmation: 'BLUGGGGH'
+        )
+        m2 = FactoryGirl.create :membership,
+                                organization: m1.organization, user: user_without_email
+        expect(m1.organization.memberships_with_email).to eq [m1, m2]
       end
     end
   end

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :organization_campaigns, only: [:show, :create] do
     member do
       get :send_email_form
+      post :send_email
     end
   end
   resources :recipients, only: [:index, :update]

@@ -28,6 +28,30 @@ class OrganizationCampaignsController < ApplicationController
     redirect_to organization_path(id: org_campaign.organization.id)
   end
 
+  def send_email_form
+    store_campaign
+    @campaign = @organization_campaign.campaign
+    @memberships = @organization_campaign.organization.memberships_with_email
+    url = organization_campaign_url(@organization_campaign)
+    # Note: Heredoc doesn't work in Ruby 2.3
+    @content = "
+      <p>Please use this URL to sign up for the campaign</p>
+      <p>#{view_context.link_to url}</p>
+      <p>Thanks!</p>
+    "
+    @subject = @campaign.name
+  end
+
+  def send_email
+    store_campaign
+    memberships = @organization_campaign.organization.memberships_with_email
+    user_emails = memberships.map(&:user_email)
+    MembershipMailer.organization_campaign_email(
+      current_user, user_emails, params[:subject], params[:content]
+    ).deliver_now
+    redirect_to organization_path(id: @organization_campaign.organization.id)
+  end
+
   private
 
   def store_campaign

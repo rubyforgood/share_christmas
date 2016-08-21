@@ -58,4 +58,8 @@ class Organization < ActiveRecord::Base
   def memberships_sorted_by_name
     memberships.includes(:user).order('users.last_name, users.first_name')
   end
+
+  def memberships_with_email
+    memberships.includes(:user).where.not(users: { email: nil })
+  end
 end

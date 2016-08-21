@@ -1,3 +1,4 @@
+menubar: false
 toolbar:
   - styleselect | bold italic | undo redo
   - link
