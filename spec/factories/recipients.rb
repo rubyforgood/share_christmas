@@ -6,11 +6,6 @@
 #  organization_campaign_id :integer
 #  first_name               :string
 #  last_name                :string
-#  email                    :string
-#  street                   :string
-#  city                     :string
-#  state                    :string
-#  zip_code                 :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  age                      :integer
@@ -19,6 +14,8 @@
 #  size                     :string
 #  wish_list                :string
 #  recipient_family_id      :integer
+#  membership_id            :integer
+#  fulfilled                :boolean          default(FALSE)
 #
 
 FactoryGirl.define do
