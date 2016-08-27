@@ -39,11 +39,6 @@ class OrganizationsController < ApplicationController
     @organization = Organization.friendly.find(params[:id])
   end
 
-  def switch_current_campaign
-    session[:current_campaign] = params[:organization_campaign][:campaign_id]
-    redirect_to organization_path(params[:id])
-  end
-
   private
 
   def find_organization_campaign

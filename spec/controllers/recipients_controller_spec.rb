@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe RecipientsController, type: :controller do
-  let(:org) { FactoryGirl.create(:organization) }
+  let!(:org) { FactoryGirl.create(:organization, name: 'Boy Scouts') }
+  let!(:oc) { FactoryGirl.create(:organization_campaign, organization: org) }
   before(:each) { login_user }
 
   describe 'index >' do
@@ -34,12 +35,10 @@ RSpec.describe RecipientsController, type: :controller do
     end
   end
 
-  describe 'update >' do
-    let(:r) { FactoryGirl.create(:recipient) }
-    let(:alternate_user) do
-      FactoryGirl.create(:user, email: 'someoneelse@admin.org', reset_password_token: 'None')
-    end
-    let(:m) { FactoryGirl.create(:membership, user: alternate_user) }
+  describe "update >" do
+    let(:r) { FactoryGirl.create(:recipient, organization_campaign: oc) }
+    let(:alternate_user) {FactoryGirl.create(:user, email: "someoneelse@admin.org", reset_password_token:"None")}
+    let(:m) { FactoryGirl.create(:membership, user: alternate_user, organization: org) }
 
     it 'updates recipient record' do
       expect(r.membership_id).to_not eq m.id
