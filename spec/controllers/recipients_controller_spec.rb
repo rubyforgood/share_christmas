@@ -17,7 +17,7 @@ RSpec.describe RecipientsController, type: :controller do
   end
 
   describe 'edit >' do
-    let(:r) { FactoryGirl.create(:recipient) }
+    let(:r) { FactoryGirl.create(:recipient, organization_campaign: oc) }
     before(:each) { subject.current_user.add_role(:admin, org) }
 
     it 'loads recipient record, and members of org' do

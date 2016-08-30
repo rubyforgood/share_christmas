@@ -84,7 +84,12 @@ RSpec.describe MembershipsController, type: :controller do
     end
 
     it 'matches user if recipient is given' do
-      recip = FactoryGirl.create(:recipient)
+      oc = FactoryGirl.create(:organization_campaign, organization: org)
+      recip_family = FactoryGirl.create(:recipient_family, organization_campaign: oc)
+      recip = FactoryGirl.create(:recipient, first_name: 'Wesley', last_name: 'Wallace',
+                                             organization_campaign: oc,
+                                             recipient_family: recip_family)
+
       post :create, organization_id: org.id, user: willy_smith_attr, recipient_id: recip.id
       recip.reload
       expect(recip.membership).to eq Membership.first
@@ -135,7 +140,7 @@ RSpec.describe MembershipsController, type: :controller do
   describe 'destroy >' do
     it 'will remove membership record and leave user record' do
       subject.current_user.add_role(:admin, org)
-      m = FactoryGirl.create(:membership, user: subject.current_user)
+      m = FactoryGirl.create(:membership, user: subject.current_user, organization: org)
 
       expect do
         delete :destroy, organization_id: org.id, id: m.id
