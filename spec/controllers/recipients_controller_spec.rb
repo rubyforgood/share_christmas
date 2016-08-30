@@ -35,9 +35,9 @@ RSpec.describe RecipientsController, type: :controller do
     end
   end
 
-  describe "update >" do
+  describe 'update >' do
     let(:r) { FactoryGirl.create(:recipient, organization_campaign: oc) }
-    let(:alternate_user) {FactoryGirl.create(:user, email: "someoneelse@admin.org", reset_password_token:"None")}
+    let(:alternate_user) { FactoryGirl.create(:user, email: 'someoneelse@admin.org', reset_password_token: 'None') }
     let(:m) { FactoryGirl.create(:membership, user: alternate_user, organization: org) }
 
     it 'updates recipient record' do
