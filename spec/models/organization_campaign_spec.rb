@@ -15,7 +15,8 @@
 require 'rails_helper'
 
 describe OrganizationCampaign do
-  let(:oc) { FactoryGirl.create :organization_campaign }
+  let(:org) { FactoryGirl.create :organization, name: 'Church' }
+  let(:oc) { FactoryGirl.create :organization_campaign, organization: org }
 
   describe 'Factories >' do
     it 'has a valid factory' do
@@ -41,7 +42,7 @@ describe OrganizationCampaign do
       end
 
       it 'returns >0 if some recipients are matched' do
-        membership = FactoryGirl.create(:membership)
+        membership = FactoryGirl.create(:membership, organization: org)
         FactoryGirl.create :recipient, organization_campaign: oc, membership: membership
         expect(oc.matched).to eq 1
       end
@@ -53,7 +54,7 @@ describe OrganizationCampaign do
       end
 
       it 'returns >0 if some recipients are matched' do
-        membership = FactoryGirl.create(:membership)
+        membership = FactoryGirl.create(:membership, organization: org)
         FactoryGirl.create :recipient, organization_campaign: oc, membership: membership
         expect(oc.matched_pct).to eq 100
       end

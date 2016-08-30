@@ -21,7 +21,9 @@
 require 'rails_helper'
 
 RSpec.describe Recipient, type: :model do
-  let(:r) { FactoryGirl.create :recipient }
+  let(:org) { FactoryGirl.create :organization, name: 'Company' }
+  let(:oc) { FactoryGirl.create :organization_campaign, organization: org }
+  let(:r) { FactoryGirl.create :recipient, organization_campaign: oc }
 
   describe 'Factories >' do
     it 'has a valid factory' do
@@ -42,12 +44,16 @@ RSpec.describe Recipient, type: :model do
       end
 
       it 'returns Race if race is recorded' do
-        r2 = FactoryGirl.create(:recipient, race: 'African-American')
+        r2 = FactoryGirl.build(:recipient, race: 'African-American', organization_campaign: oc)
         expect(r2.other_details).to eq 'Race: African-American'
       end
 
       it 'returns Race and size if both are recorded' do
-        r2 = FactoryGirl.create(:recipient, race: 'African-American, Size: 4')
+        r2 = FactoryGirl.build(:recipient,
+                               race: 'African-American',
+                               size: 4,
+                               organization_campaign: oc)
+
         expect(r2.other_details).to eq 'Race: African-American, Size: 4'
       end
     end

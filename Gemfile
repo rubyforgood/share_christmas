@@ -22,6 +22,7 @@ gem 'rolify'
 gem 'sass-rails', '~> 5.0'
 gem 'tinymce-rails', github: 'spohlenz/tinymce-rails'
 gem 'uglifier', '>= 1.3.0'
+gem 'will_paginate'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

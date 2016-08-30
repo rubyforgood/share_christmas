@@ -11,12 +11,6 @@
   <%= render 'layouts/navbar' %>
   <%= render 'layouts/flash' %>
   <div class="container">
-    <% if defined?(@organization_campaign) && @organization_campaign.try(:campaign_logo) %>
-      <%= image_tag(@organization_campaign.campaign_logo.url, alt: "Logo", class: "header--logo") %>
-    <% end %>
-    <% if session[:organization_name] %>
-      <h1 class="header"><%= session[:organization_name] %></h1>
-    <% end %>
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
   <%= javascript_include_tag 'application' %>

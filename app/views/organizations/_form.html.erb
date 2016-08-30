@@ -1,0 +1,20 @@
+<%= form_for @organization do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <div>
+      <%= f.text_area :description %>
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

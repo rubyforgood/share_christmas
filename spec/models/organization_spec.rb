@@ -18,7 +18,15 @@
 require 'rails_helper'
 
 describe Organization do
+  before(:all) do
+    FactoryGirl.create(:organization, name: 'b')
+    FactoryGirl.create(:organization, name: 'a')
+  end
+
   describe 'Scopes >' do
+    it 'has a scope to order organizations alphabetically' do
+      expect(Organization.alphabetical.pluck(:name)).to eq(%w(a b))
+    end
   end
 
   describe 'Class Methods >' do
@@ -41,6 +49,20 @@ describe Organization do
         oc = FactoryGirl.create :organization_campaign
         expect(oc.organization.current_campaign).to eq oc.campaign
       end
+    end
+  end
+
+  describe 'name validations' do
+    it 'must have a name' do
+      org = Organization.new
+      org.valid?
+      expect(org.errors).to include(:name)
+    end
+
+    it 'must have a unique name' do
+      org = Organization.new(name: 'a')
+      org.valid?
+      expect(org.errors).to include(:name)
     end
   end
 end

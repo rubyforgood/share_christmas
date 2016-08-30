@@ -107,6 +107,12 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
   config.include ControllerMacros, type: :controller
+
+  RSpec.configure do |c|
+    # filter_run is short-form alias for filter_run_including
+    c.filter_run focus: true
+    c.run_all_when_everything_filtered = true
+  end
 end
 
 Capybara.default_driver = :poltergeist
