@@ -44,34 +44,4 @@ RSpec.describe OrganizationCampaignsController, type: :controller do
       end
     end
   end
-
-  describe 'send_email_form >' do
-    let(:oc) { FactoryGirl.create(:organization_campaign) }
-
-    it 'denormalizes variables for fast lookup' do
-      get :send_email_form, id: oc.id
-      expect(assigns(:campaign)).to eq oc.campaign
-    end
-
-    it 'constructs a template email for display' do
-      get :send_email_form, id: oc.id
-      expect(assigns(:content)).to match organization_campaign_url(oc)
-      expect(assigns(:subject)).to eq 'Share Your Christmas 2015'
-    end
-  end
-
-  describe 'send_email >' do
-    let(:oc) { FactoryGirl.create(:organization_campaign) }
-
-    it 'sends emails' do
-      post :send_email, id: oc.id, subject: 'Share It', content: 'Hi mom!'
-      mail = ActionMailer::Base.deliveries.last
-      expect(mail.subject).to eq 'Share It'
-    end
-
-    it 'redirects to org admin dashboard' do
-      post :send_email, id: oc.id, subject: 'Share It', content: 'Hi mom!'
-      expect(response).to redirect_to organization_path(id: oc.organization.id)
-    end
-  end
 end
