@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  before_action :load_org_and_authorize
   layout 'org_admin'
 
   def show

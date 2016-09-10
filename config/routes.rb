@@ -26,18 +26,12 @@ Rails.application.routes.draw do
     resources :org_admins, only: [:index, :create, :destroy]
     resources :memberships
     resources :recipients, only: [:index, :edit, :update]
+    resources :import_sessions, only: [:new, :create]
     member do
       get :switch_current_campaign
-      get :import_emails_form
-      post :import_emails_form_page2
     end
   end
-  resources :organization_campaigns, only: [:show, :create] do
-    member do
-      get :send_email_form
-      post :send_email
-    end
-  end
+  resources :organization_campaigns, only: [:show, :create]
   resources :recipients, only: [:index, :update]
   resources :users, only: [:index, :new, :create]
 end
