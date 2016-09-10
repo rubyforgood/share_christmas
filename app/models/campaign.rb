@@ -25,6 +25,7 @@ class Campaign < ActiveRecord::Base
                     },
                     default_url: '/images/:style/missing.png'
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
+  validates :name, presence: true
 
   scope :currently_running, -> { where('campaigns.donation_deadline >= current_date') }
 end

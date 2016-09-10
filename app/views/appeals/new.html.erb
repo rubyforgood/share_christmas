@@ -1,0 +1,18 @@
+<%= tinymce_assets %>
+
+<%= tinymce %>
+
+<h1>Send Campaign Email</h1>
+
+<p>
+This will send an invitation or reminder email for the 
+<%= @campaign.name %> campaign to <%= @memberships.count %>
+active members.  
+</p>
+
+<%= form_for @appeal, url: mail_appeals_path, method: :post do |f| %> 
+  Subject: <%= f.text_field :subject %>
+  <%= f.text_area :content, class: "tinymce", rows: 10, cols: 120 %>
+  <%= f.hidden_field :organization_campaign_id %>
+  <%= f.submit "Send Email" %>
+<% end %>

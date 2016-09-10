@@ -53,6 +53,14 @@ RSpec.describe CampaignsController, type: :controller do
           post :create, campaign: FactoryGirl.attributes_for(:campaign)
         end.to change { Campaign.count }.by 1
       end
+
+      it 'displays error message if campaign is invalid' do
+        expect do
+          post :create, campaign: { name: '' }
+        end.to_not change { Campaign.count }
+        expect(flash[:alert]).to_not be_nil
+        expect(response).to render_template :edit
+      end
     end
 
     context 'with not an admin' do
@@ -98,6 +106,12 @@ RSpec.describe CampaignsController, type: :controller do
       it 'updates record' do
         put :update, id: campaign, campaign: FactoryGirl.attributes_for(:campaign)
         expect(response).to redirect_to campaign
+      end
+
+      it 'displays error message if update is invalid' do
+        put :update, id: campaign, campaign: { name: '' }
+        expect(flash[:alert]).to_not be_nil
+        expect(response).to render_template :edit
       end
     end
   end

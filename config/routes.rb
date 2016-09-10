@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   resources :matches, only: [:new, :create, :destroy]
 
+  resource :mail, only: [] do
+    resources :appeals, only: [:new, :create]
+  end
+
   resources :campaigns do
     member do
       get :switch_current_campaign
@@ -31,6 +35,7 @@ Rails.application.routes.draw do
   resources :organization_campaigns, only: [:show, :create] do
     member do
       get :send_email_form
+      post :send_email
     end
   end
   resources :recipients, only: [:index, :update]
