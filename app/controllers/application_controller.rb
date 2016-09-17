@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   end
 
   def load_org_and_authorize
-    @org = Organization.friendly.find(params[:organization_id])
+    org_id = params[:organization_id] || params[:id]
+    @org = Organization.friendly.find(org_id)
     authorize! :admin, @org
   end
 

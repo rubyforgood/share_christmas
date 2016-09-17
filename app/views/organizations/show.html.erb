@@ -47,7 +47,7 @@
 <% end %>
 
 <ul>
-<li><%= link_to 'Import Member Email List', import_emails_form_organization_path(@org) %></li>
+<li><%= link_to 'Import Member Email List', new_organization_import_session_path(@org) %></li>
 <li><%= link_to 'Member List',organization_memberships_path(@org) %></li>
 <% if @organization_campaign %>
   <li><%= link_to 'Send Emails', new_mail_appeal_path(organization_campaign: @organization_campaign) %></li>
