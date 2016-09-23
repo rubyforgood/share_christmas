@@ -1,0 +1,32 @@
+<h1>Match Member</h1>
+
+<%= form_for [:orgadmin, @recipient] do |f| %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Wishlist</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @recipient.name %></td>
+        <td><%= @recipient.age %></td>
+        <td><%= @recipient.gender %></td>
+        <td><%= @recipient.wish_list %></td>
+        <td><%= @recipient.other_details %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  Existing Member:
+  <%= f.collection_select(:membership_id, @memberships, :id, :user_name) %>
+
+  <%= f.submit("Match") %>
+<% end %>
+
+New Member:
+<%= render partial: 'orgadmin/memberships/form' %>

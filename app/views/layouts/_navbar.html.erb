@@ -18,9 +18,8 @@
     	    <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
           <% if current_user.has_role? :admin %>
             <%= render 'layouts/admin_dropdown' %>
-      <% end %>
-          <%# TODO: One link for each org this person is an admin of %>
-          <li><%= link_to "Organization Admin", organization_path(1) %></li>
+          <% end %>
+          <li><%= link_to "Organization Admin", orgadmin_root_path %></li>
     		<% else %>
         	<li><%= link_to "Sign in", new_user_session_path %></li>
     		<% end %>

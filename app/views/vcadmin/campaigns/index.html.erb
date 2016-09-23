@@ -1,0 +1,14 @@
+<% @campaigns.each do |campaign| %>
+  <%= link_to campaign.name, vcadmin_campaign_path(campaign) %>
+  <% if current_user.has_role? :admin %>
+    <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe, edit_vcadmin_campaign_path(campaign) %>
+    <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, vcadmin_campaign_path(campaign), method: :delete %>
+  <% end %>
+  <br>
+<% end %>
+
+<% if current_user.has_role? :admin %>
+  <br>
+  <br>
+  <%= link_to 'Add new campaign'.html_safe, new_vcadmin_campaign_path %>
+<% end %>
