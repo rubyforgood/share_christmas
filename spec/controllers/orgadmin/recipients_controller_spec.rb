@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Orgadmin::RecipientsController, type: :controller do
   let(:org) { FactoryGirl.create(:organization) }
-  before(:each) { 
-    login_user 
-    subject.current_user.add_role(:admin, org) 
-  }
+  before(:each) do
+    login_user
+    subject.current_user.add_role(:admin, org)
+  end
 
   describe 'index >' do
     let(:oc) { FactoryGirl.create(:organization_campaign, organization: org) }

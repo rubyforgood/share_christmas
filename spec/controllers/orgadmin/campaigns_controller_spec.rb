@@ -9,7 +9,7 @@ RSpec.describe Orgadmin::CampaignsController, type: :controller do
     let(:campaign2) { FactoryGirl.create(:campaign) }
     before(:each) do
       subject.current_user.add_role(:admin, org)
-      get :switch_current_campaign, organization_campaign: {campaign_id: campaign2.id}
+      get :switch_current_campaign, organization_campaign: { campaign_id: campaign2.id }
     end
 
     it 'changes session variable for current_campaign ' do

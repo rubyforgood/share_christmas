@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Email is not required, so you can create members, match 
+  # Email is not required, so you can create members, match
   # them with recipients, and not have them login.
   def email_required?
     false

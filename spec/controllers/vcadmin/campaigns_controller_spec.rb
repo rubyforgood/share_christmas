@@ -135,5 +135,4 @@ RSpec.describe Vcadmin::CampaignsController, type: :controller do
       end
     end
   end
-
 end

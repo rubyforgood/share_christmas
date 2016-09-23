@@ -10,5 +10,4 @@ class ApplicationController < ActionController::Base
   def printer_friendly_request?
     params.fetch(:format, nil) == 'print'
   end
-
 end
