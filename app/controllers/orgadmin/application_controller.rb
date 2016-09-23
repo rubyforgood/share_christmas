@@ -6,8 +6,8 @@ class Orgadmin::ApplicationController < ApplicationController
   def load_org_and_authorize
     # TODO: If the user is member of more than one org, give them a choice
     orgs_user_is_admin_of = Organization.with_role(:admin, current_user)
+    raise CanCan::AccessDenied if orgs_user_is_admin_of.empty?
     @org = orgs_user_is_admin_of.first
-    authorize! :admin, @org
   end
 
   def find_organization_campaign

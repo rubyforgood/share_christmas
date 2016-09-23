@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Orgadmin::AppealsController, type: :controller do
   let(:oc) { FactoryGirl.create(:organization_campaign) }
-  before(:each) { login_user }
+  before(:each) { login_user; subject.current_user.add_role(:admin, oc.organization) }
 
   describe 'new >' do
     it 'denormalizes variables for fast lookup' do
@@ -34,7 +34,7 @@ RSpec.describe Orgadmin::AppealsController, type: :controller do
 
     it 'redirects to org admin dashboard' do
       post :create, appeal: appeal_attr
-      expect(response).to redirect_to organization_path(id: oc.organization.id)
+      expect(response).to redirect_to orgadmin_root_path
     end
   end
 end

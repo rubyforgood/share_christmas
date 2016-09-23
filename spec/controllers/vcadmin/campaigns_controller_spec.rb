@@ -6,16 +6,18 @@ RSpec.describe Vcadmin::CampaignsController, type: :controller do
 
   describe 'index > ' do
     context 'users who are not volunteer center admins > ' do
-      it 'will not be denied access' do
-        get :index
-        expect(response).to be_successful
+      it 'will be denied access' do
+        expect do
+          get :index
+        end.to raise_error(CanCan::AccessDenied)
       end
     end
   end
 
   describe 'show > ' do
-    context 'users who are not volunteer center admins > ' do
+    context 'users who are volunteer center admins > ' do
       it 'will not be denied access' do
+        subject.current_user.add_role :admin
         get :show, id: campaign
         expect(response).to be_successful
       end

@@ -1,15 +1,15 @@
 <p>
   <%= @campaign.name %>
   <% if current_user.has_role? :admin %>
-    <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe, edit_campaign_path(@campaign) %>
-    <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, campaign_path(@campaign), method: :delete %>
+    <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe, edit_vcadmin_campaign_path(@campaign) %>
+    <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, vcadmin_campaign_path(@campaign), method: :delete %>
   <% end %>
 </p>
 
 <p>
   <%=
     @campaign.description.presence ||
-        link_to('Add a description', edit_campaign_path(@campaign))
+        link_to('Add a description', edit_vcadmin_campaign_path(@campaign))
   %>
 </p>
 
@@ -33,7 +33,7 @@
 </p>
 
 <% if @other_active_campaigns %>
-  <%= form_tag switch_current_campaign_campaign_path, method: :get do  %>
+  <%= form_tag switch_current_campaign_vcadmin_campaigns_path, method: :get do  %>
     Switch to campaign:
     <%= select_tag(:campaign,
                    options_from_collection_for_select(@other_active_campaigns, :id, :name)) %>

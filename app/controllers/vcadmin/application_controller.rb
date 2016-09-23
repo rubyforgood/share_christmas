@@ -4,6 +4,6 @@ class Vcadmin::ApplicationController < ApplicationController
   layout 'org_admin'
 
   def authorize
-    
+    raise CanCan::AccessDenied unless current_user.has_role? :admin
   end
 end

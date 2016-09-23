@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Orgadmin::CampaignsController, type: :controller do
+  let(:org) { FactoryGirl.create(:organization) }
   let!(:campaign) { FactoryGirl.create(:campaign) }
   before(:each) { login_user }
 
   describe 'switch_current_campaign > ' do
     let(:campaign2) { FactoryGirl.create(:campaign) }
     before(:each) do
-      subject.current_user.add_role :admin
+      subject.current_user.add_role(:admin, org)
       get :switch_current_campaign, organization_campaign: {campaign_id: campaign2.id}
     end
 

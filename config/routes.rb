@@ -35,7 +35,11 @@ Rails.application.routes.draw do
 
   namespace :vcadmin do
     root to: 'dashboard#index', via: 'get'
-    resources :campaigns
+    resources :campaigns do
+      collection do
+        get :switch_current_campaign
+      end
+    end
   end
 
 end

@@ -1,4 +1,4 @@
-<%= form_for @campaign do |f| %>
+<%= form_for [:vcadmin, @campaign] do |f| %>
   <%= label_tag :name %>
   <br>
   <%= f.text_field :name %>
