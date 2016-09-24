@@ -32,8 +32,16 @@ class OrganizationCampaign < ActiveRecord::Base
       where(recipient_families: {organization_campaign_id: id})
   end
 
+  def unmatched_recipients
+    recipients.where(membership_id: nil)
+  end
+
+  def matched_recipients
+    recipients.where.not(membership_id: nil)
+  end
+
   def assigned
-    # There's probably a slicker way to do this
+    # This is faster than using ssociations above.  
     recipient_families.joins(:recipients).count
   end
 

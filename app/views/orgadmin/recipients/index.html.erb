@@ -1,4 +1,12 @@
-<h1>Recipient List for <%= @oc.campaign.name %></h1>
+<%
+     header = case params[:matched]
+       when 'true' then 'Matched Recipients Report'
+       when 'false' then 'Unmatched Recipients Report'
+       else 'Recipients Report'
+     end
+%>
+
+<h1><%= header %> for <%= @oc.campaign.name %></h1>
 
 <p>
 These are recipients assigned to you by the Volunteer Center
@@ -6,7 +14,7 @@ for this campaign.  You can assign them to members
 of your organization.   You may also assign an entire family at once.
 </p>
 
-<table class="table">
+<table class="table text-left">
   <thead>
     <tr>
       <th>Name</th>
@@ -14,8 +22,12 @@ of your organization.   You may also assign an entire family at once.
       <th>Gender</th>
       <th>Wishlist</th>
       <th>Details</th>
-      <th>Matched To</th>
-      <th>Action</th>
+      <% if params[:matched]!='false' %>
+        <th>Matched To</th>
+      <% end %>
+      <% if params[:matched].nil? %>
+        <th>Action</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -26,19 +38,23 @@ of your organization.   You may also assign an entire family at once.
         <td><%= r.gender %></td>
         <td><%= r.wish_list %></td>
         <td><%= r.other_details %></td>
-        <td><%= r.matched? ? r.membership.user_name : "" %></td>
-        <td>
-          <% if r.matched? %>
-            <%= form_for r, url: orgadmin_recipient_path(r), method: :patch do |f| %>
-              <%= f.hidden_field :membership_id, value: nil %>
-              <%= f.submit("Unmatch") %>
+        <% if params[:matched]!='false' %>
+          <td><%= r.matched? ? r.membership.user_name : "" %></td>
+        <% end %>
+        <% if params[:matched].nil? %>
+          <td>
+            <% if r.matched? %>
+              <%= form_for r, url: orgadmin_recipient_path(r), method: :patch do |f| %>
+                <%= f.hidden_field :membership_id, value: nil %>
+                <%= f.submit("Unmatch") %>
+              <% end %>
+            <% else %>
+              <%= form_for r, url: edit_orgadmin_recipient_path(r), method: :get do |f| %>
+                <%= f.submit("Match") %>
+              <% end %>
             <% end %>
-          <% else %>
-            <%= form_for r, url: edit_orgadmin_recipient_path(r), method: :get do |f| %>
-              <%= f.submit("Match") %>
-            <% end %>
-          <% end %>
-        </td>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
