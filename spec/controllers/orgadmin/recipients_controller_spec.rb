@@ -9,7 +9,8 @@ RSpec.describe Orgadmin::RecipientsController, type: :controller do
 
   describe 'index >' do
     let(:oc) { FactoryGirl.create(:organization_campaign, organization: org) }
-    let!(:recipient) { FactoryGirl.create(:recipient, organization_campaign: oc) }
+    let(:rf) { FactoryGirl.create(:recipient_family, organization_campaign: oc) }
+    let!(:recipient) { FactoryGirl.create(:recipient, recipient_family: rf) }
     before(:each) { subject.current_user.add_role(:admin, org) }
 
     it 'loads recipients for organization campaign' do

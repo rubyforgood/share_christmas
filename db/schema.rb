@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(version: 20160924133223) do
   create_table "recipients", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "age"
     t.string   "gender"
     t.string   "race"
