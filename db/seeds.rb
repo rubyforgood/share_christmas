@@ -61,17 +61,17 @@ does = sw.recipient_families.create!(
   contact_last_name: "Jenkins",
   contact_first_name: "Leeroy",
   address: "33234 Something Ave",
+  campaign: cp,
   city: "Seattle",
   state: "FL",
   zip: "24567",
   phone: "252-281-3348"
 )
 
-john = oc.recipients.create!(
+john = does.recipients.create!(
   first_name: "Jimmy",
   last_name: "Doe",
   email: "jimmydoe@gmail.com",
-  recipient_family: does,
   street: "Main Ave",
   city: "Springfield",
   state: "VA",
@@ -82,11 +82,10 @@ john = oc.recipients.create!(
   size: "M",
   wish_list: "Bicycle, iPad Pro, Basketball"
 )
-jane = oc.recipients.create!(
+jane = does.recipients.create!(
   first_name: "Jane",
   last_name: "Doe",
   email: "janedoe@gmail.com",
-  recipient_family: does,
   street: "Second St",
   city: "Lava",
   state: "CO",
@@ -98,5 +97,3 @@ jane = oc.recipients.create!(
   wish_list: "iPad Pro, legos"
 )
 
-john = oc.recipients.create!(first_name: "Jimmy", last_name: "Doe", email: "jimmydoe@gmail.com", recipient_family: does, street: "Main Ave", city: "Springfield", state: "VA", zip_code: "22012", age: 11, gender: "male", race: "Hispanic", size: "M", wish_list: "Bicycle, iPad Pro, Basketball")
-jane = oc.recipients.create!(first_name: "Jane", last_name: "Doe", email: "janedoe@gmail.com", recipient_family: does, street: "Second St", city: "Lava", state: "CO", zip_code: "80210", age: 9, gender: "female", race: "Asian", size: "S", wish_list: "iPad Pro, legos")

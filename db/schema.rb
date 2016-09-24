@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709140246) do
+ActiveRecord::Schema.define(version: 20160924133223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,13 +99,14 @@ ActiveRecord::Schema.define(version: 20160709140246) do
     t.string   "phone"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "campaign_id"
   end
 
+  add_index "recipient_families", ["campaign_id"], name: "index_recipient_families_on_campaign_id", using: :btree
   add_index "recipient_families", ["organization_campaign_id"], name: "index_recipient_families_on_organization_campaign_id", using: :btree
   add_index "recipient_families", ["social_worker_id"], name: "index_recipient_families_on_social_worker_id", using: :btree
 
   create_table "recipients", force: :cascade do |t|
-    t.integer  "organization_campaign_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
@@ -113,8 +114,8 @@ ActiveRecord::Schema.define(version: 20160709140246) do
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "age"
     t.string   "gender"
     t.string   "race"
@@ -122,11 +123,10 @@ ActiveRecord::Schema.define(version: 20160709140246) do
     t.string   "wish_list"
     t.integer  "recipient_family_id"
     t.integer  "membership_id"
-    t.boolean  "fulfilled",                default: false
+    t.boolean  "fulfilled",           default: false
   end
 
   add_index "recipients", ["membership_id"], name: "index_recipients_on_membership_id", using: :btree
-  add_index "recipients", ["organization_campaign_id"], name: "index_recipients_on_organization_campaign_id", using: :btree
   add_index "recipients", ["recipient_family_id"], name: "index_recipients_on_recipient_family_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
@@ -190,9 +190,9 @@ ActiveRecord::Schema.define(version: 20160709140246) do
   add_foreign_key "organization_campaigns", "campaigns"
   add_foreign_key "organization_campaigns", "organizations"
   add_foreign_key "organizations", "volunteer_centers"
+  add_foreign_key "recipient_families", "campaigns"
   add_foreign_key "recipient_families", "organization_campaigns"
   add_foreign_key "recipient_families", "social_workers"
   add_foreign_key "recipients", "memberships"
-  add_foreign_key "recipients", "organization_campaigns"
   add_foreign_key "recipients", "recipient_families"
 end

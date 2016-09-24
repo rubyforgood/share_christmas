@@ -15,6 +15,7 @@
 #  phone                    :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
+#  campaign_id              :integer
 #
 
 FactoryGirl.define do
