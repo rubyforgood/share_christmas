@@ -10,13 +10,33 @@ RSpec.describe Orgadmin::RecipientsController, type: :controller do
   describe 'index >' do
     let(:oc) { FactoryGirl.create(:organization_campaign, organization: org) }
     let(:rf) { FactoryGirl.create(:recipient_family, organization_campaign: oc) }
-    let!(:recipient) { FactoryGirl.create(:recipient, recipient_family: rf) }
-    before(:each) { subject.current_user.add_role(:admin, org) }
-
-    it 'loads recipients for organization campaign' do
-      get :index, organization_id: org.id
-      expect(assigns(:recipients)).to eq [recipient]
+    let!(:recipient) {  }
+    before(:each) do 
+      subject.current_user.add_role(:admin, org)
+      2.times { FactoryGirl.create(:recipient, recipient_family: rf) }
+      m = FactoryGirl.create(:membership, user: subject.current_user, organization: org)
+      FactoryGirl.create(:recipient, recipient_family: rf, membership: m)
     end
+
+    it 'will see page' do
+      get :index, organization_campaign: oc.id
+      expect(response).to be_successful
+    end
+
+    it 'will see matched recipients' do
+      get :index, organization_campaign: oc.id, matched: 'true'
+      expect(assigns(:recipients).count).to eq 1
+    end
+ 
+    it 'will see unmatched recipients' do
+      get :index, organization_campaign: oc.id, matched: 'false'
+      expect(assigns(:recipients).count).to eq 2
+    end
+ 
+    it 'will see all recipients' do
+      get :index, organization_campaign: oc.id
+      expect(assigns(:recipients).count).to eq 3
+    end    
   end
 
   describe 'edit >' do

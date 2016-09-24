@@ -2,7 +2,13 @@ module Orgadmin
   class RecipientsController < Orgadmin::ApplicationController
     def index
       @oc = find_organization_campaign
-      @recipients = @oc.recipients
+      if params[:matched] == 'true'
+        @recipients = @oc.matched_recipients
+      elsif params[:matched] == 'false'
+        @recipients = @oc.unmatched_recipients
+      else
+        @recipients = @oc.recipients
+      end
     end
 
     def edit
