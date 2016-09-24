@@ -16,6 +16,6 @@ class Membership < ActiveRecord::Base
   has_many :recipients
 
   with_options to: :user, prefix: true, allow_nil: true do |d|
-    d.delegate :name, :email, :created_at, :last_sign_in_at
+    d.delegate :name, :email, :first_name, :last_name, :created_at, :last_sign_in_at
   end
 end

@@ -1,0 +1,30 @@
+<%# I'm sure there's a better way to do this %>
+<% target = @user.new_record? ? 
+   orgadmin_memberships_path : 
+   orgadmin_membership_path(@membership.id) 
+%>
+<%= form_for @user, url: target do |f| %>
+  <% if @recipient %>
+    <%= hidden_field_tag :recipient_id, @recipient.id %>
+  <% end %>
+  <%= label_tag :first_name %>
+  <br>
+  <%= f.text_field :first_name %>
+  <br>
+  <%= label_tag :last_name %>
+  <br>
+  <%= f.text_field :last_name %>
+  <br>
+  <%= label_tag :email %>
+  <br>
+  <%= f.text_field :email %>
+  <%= f.fields_for @membership do |memb_f| %>
+    <br>
+    <%= label_tag :send_email %>
+    <br>
+    <%= memb_f.check_box :send_email %>
+  <% end %>
+  <br>
+  <%= f.submit %>
+<% end %>
+

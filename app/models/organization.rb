@@ -2,25 +2,22 @@
 #
 # Table name: organizations
 #
-#  id                  :integer          not null, primary key
-#  volunteer_center_id :integer
-#  name                :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  description         :text
-#  logo_file_name      :string
-#  logo_content_type   :string
-#  logo_file_size      :integer
-#  logo_updated_at     :datetime
-#  url                 :string
-#  slug                :string
+#  id                :integer          not null, primary key
+#  name              :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  description       :text
+#  logo_file_name    :string
+#  logo_content_type :string
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
+#  url               :string
+#  slug              :string
 #
 
 class Organization < ActiveRecord::Base
   # Use rolify to enforce org admin rights to particular users
   resourcify
-
-  belongs_to :volunteer_center
 
   has_many :organization_campaigns
   has_many :campaigns, through: :organization_campaigns
@@ -56,5 +53,13 @@ class Organization < ActiveRecord::Base
   def current_campaign
     return nil if campaigns.empty?
     campaigns.order(donation_deadline: 'DESC').first
+  end
+
+  def memberships_sorted_by_name
+    memberships.includes(:user).order('users.last_name, users.first_name')
+  end
+
+  def memberships_with_email
+    memberships.includes(:user).where.not(users: { email: nil })
   end
 end

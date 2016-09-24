@@ -6,21 +6,23 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-vc = VolunteerCenter.create(name: 'Durham, NC Volunteer Center')
-admin = User.create!(
-  email: ENV['ADMIN_EMAIL'],
-  password: ENV['ADMIN_PASSWORD'],
-  password_confirmation: ENV['ADMIN_PASSWORD'],
-  first_name: 'Mary',
-  last_name: 'Ruby'
+vc_admin = User.create!(
+  email: ENV['VC_ADMIN_EMAIL'],
+  password: ENV['VC_ADMIN_PASSWORD'],
+  password_confirmation: ENV['VC_ADMIN_PASSWORD'],
+  first_name: 'VC',
+  last_name: 'Admin'
 )
-admin.add_role(:admin, vc)
+vc_admin.add_role(:admin)
 
-oo = vc.organizations.create!(
-  name: "Aldersgate United Methodist Church",
-  description: "Church",
-  url: "https://shareyourchristmas.net/partner/aldersgate/4"
+oo = Organization.create!(
+    name: "Aldersgate United Methodist Church",
+    description: "Church",
+    url: "https://shareyourchristmas.net/partner/aldersgate/4"
 )
+vc_admin.add_role(:admin, oo)
+
+admin_member = oo.memberships.create!(user: vc_admin, send_email: false)
 
 guest = User.create!(
   email: ENV['USER_EMAIL'],
@@ -29,18 +31,25 @@ guest = User.create!(
   first_name: 'Joe',
   last_name: 'Generous'
 )
-
-admin_member = oo.memberships.create!(user: admin, send_email: false)
-admin.add_role(:admin, oo)
 normal_member = oo.memberships.create!(user: guest, send_email: true)
 
-cp = vc.campaigns.create!(
+oo_admin = User.create!(
+    email: ENV['ORG_ADMIN_EMAIL'],
+    password: ENV['ORG_ADMIN_PASSWORD'],
+    password_confirmation: ENV['ORG_ADMIN_PASSWORD'],
+    first_name: 'Org',
+    last_name: 'Admin'
+)
+oo_admin.add_role(:admin, oo)
+
+
+cp = Campaign.create!(
   name: "Share Christmas 2016",
   donation_deadline: Date.today + 5.days,
   reminder_date: Date.today + 2.days,
   description: "Christmas campaign"
 )
-cp2 = vc.campaigns.create!(
+cp2 = Campaign.create!(
   name: "Backpacks 2016",
   donation_deadline: Date.today + 10.days,
   reminder_date: Date.today + 7.days,
@@ -71,11 +80,6 @@ does = sw.recipient_families.create!(
 john = does.recipients.create!(
   first_name: "Jimmy",
   last_name: "Doe",
-  email: "jimmydoe@gmail.com",
-  street: "Main Ave",
-  city: "Springfield",
-  state: "VA",
-  zip_code: "22012",
   age: 11,
   gender: "male",
   race: "Hispanic",
@@ -85,11 +89,6 @@ john = does.recipients.create!(
 jane = does.recipients.create!(
   first_name: "Jane",
   last_name: "Doe",
-  email: "janedoe@gmail.com",
-  street: "Second St",
-  city: "Lava",
-  state: "CO",
-  zip_code: "80210",
   age: 9,
   gender: "female",
   race: "Asian",
