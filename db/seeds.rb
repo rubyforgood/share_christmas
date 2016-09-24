@@ -58,14 +58,7 @@ cp2 = Campaign.create!(
 
 oc = OrganizationCampaign.create!(organization: oo, campaign: cp)
 
-sw = SocialWorker.create!(
-  assigned_number: 10,
-  last_name: "Kelly",
-  first_name: "Charlie",
-  email: "charlie@paddys.com",
-  phone: "555-5555"
-)
-does = sw.recipient_families.create!(
+rf = oc.recipient_families.create!(
   casenumber: 5,
   contact_last_name: "Jenkins",
   contact_first_name: "Leeroy",
@@ -77,7 +70,7 @@ does = sw.recipient_families.create!(
   phone: "252-281-3348"
 )
 
-john = does.recipients.create!(
+john = rf.recipients.create!(
   first_name: "Jimmy",
   last_name: "Doe",
   age: 11,
@@ -86,7 +79,7 @@ john = does.recipients.create!(
   size: "M",
   wish_list: "Bicycle, iPad Pro, Basketball"
 )
-jane = does.recipients.create!(
+jane = rf.recipients.create!(
   first_name: "Jane",
   last_name: "Doe",
   age: 9,

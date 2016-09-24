@@ -4,7 +4,6 @@
 #
 #  id                       :integer          not null, primary key
 #  organization_campaign_id :integer
-#  social_worker_id         :integer
 #  casenumber               :integer
 #  contact_last_name        :string
 #  contact_first_name       :string
