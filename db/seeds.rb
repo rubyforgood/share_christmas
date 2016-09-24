@@ -70,7 +70,7 @@ rf = oc.recipient_families.create!(
   phone: "252-281-3348"
 )
 
-john = does.recipients.create!(
+john = rf.recipients.create!(
   first_name: "Jimmy",
   last_name: "Doe",
   age: 11,
@@ -79,7 +79,7 @@ john = does.recipients.create!(
   size: "M",
   wish_list: "Bicycle, iPad Pro, Basketball"
 )
-jane = does.recipients.create!(
+jane = rf.recipients.create!(
   first_name: "Jane",
   last_name: "Doe",
   age: 9,
