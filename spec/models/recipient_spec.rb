@@ -2,20 +2,19 @@
 #
 # Table name: recipients
 #
-#  id                       :integer          not null, primary key
-#  organization_campaign_id :integer
-#  first_name               :string
-#  last_name                :string
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#  age                      :integer
-#  gender                   :string
-#  race                     :string
-#  size                     :string
-#  wish_list                :string
-#  recipient_family_id      :integer
-#  membership_id            :integer
-#  fulfilled                :boolean          default(FALSE)
+#  id                  :integer          not null, primary key
+#  first_name          :string
+#  last_name           :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  age                 :integer
+#  gender              :string
+#  race                :string
+#  size                :string
+#  wish_list           :string
+#  recipient_family_id :integer
+#  membership_id       :integer
+#  fulfilled           :boolean          default(FALSE)
 #
 
 require 'rails_helper'
