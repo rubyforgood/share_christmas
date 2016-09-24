@@ -29,8 +29,10 @@ describe OrganizationCampaign do
         expect(oc.assigned).to eq 0
       end
 
-      it 'returns >0 if some recipients are assigned' do
-        FactoryGirl.create :recipient, organization_campaign: oc
+      it 'returns >0 if some recipient families with recipients are assigned' do
+        # Need to do this to ensure recipient_family is linked to our org campaign
+        rf = FactoryGirl.create :recipient_family, organization_campaign: oc
+        FactoryGirl.create :recipient, recipient_family: rf
         expect(oc.assigned).to eq 1
       end
     end
@@ -42,7 +44,8 @@ describe OrganizationCampaign do
 
       it 'returns >0 if some recipients are matched' do
         membership = FactoryGirl.create(:membership)
-        FactoryGirl.create :recipient, organization_campaign: oc, membership: membership
+        rf = FactoryGirl.create :recipient_family, organization_campaign: oc
+        FactoryGirl.create :recipient, recipient_family: rf, membership: membership
         expect(oc.matched).to eq 1
       end
     end
@@ -54,7 +57,8 @@ describe OrganizationCampaign do
 
       it 'returns >0 if some recipients are matched' do
         membership = FactoryGirl.create(:membership)
-        FactoryGirl.create :recipient, organization_campaign: oc, membership: membership
+        rf = FactoryGirl.create :recipient_family, organization_campaign: oc
+        FactoryGirl.create :recipient, recipient_family: rf, membership: membership
         expect(oc.matched_pct).to eq 100
       end
     end

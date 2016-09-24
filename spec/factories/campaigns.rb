@@ -2,23 +2,21 @@
 #
 # Table name: campaigns
 #
-#  id                  :integer          not null, primary key
-#  volunteer_center_id :integer
-#  name                :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  description         :text
-#  donation_deadline   :date
-#  reminder_date       :date
-#  logo_file_name      :string
-#  logo_content_type   :string
-#  logo_file_size      :integer
-#  logo_updated_at     :datetime
+#  id                :integer          not null, primary key
+#  name              :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  description       :text
+#  donation_deadline :date
+#  reminder_date     :date
+#  logo_file_name    :string
+#  logo_content_type :string
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
 #
 
 FactoryGirl.define do
   factory(:campaign) do
-    volunteer_center
     name 'Share Your Christmas 2015'
     description 'Share Your Christmas Campaign 2015'
     donation_deadline Date.today + 7

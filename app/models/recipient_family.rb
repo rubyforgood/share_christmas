@@ -14,9 +14,19 @@
 #  phone                    :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
+#  campaign_id              :integer
 #
 
 class RecipientFamily < ActiveRecord::Base
+  # A recipient family always belongs to a campaign
+  belongs_to :campaign
+
+  # A recipient family belongs to an organization campaign when they 
+  # are assigned by the volunteer center.  It should always be the case
+  # that the linked campaign here should match te campaign in the 
+  # organization_campaign.
   belongs_to :organization_campaign
+
+  # The individual members of the family
   has_many :recipients
 end

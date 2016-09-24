@@ -6,8 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-vc = VolunteerCenter.create(name: 'Durham, NC Volunteer Center')
-
 vc_admin = User.create!(
   email: ENV['VC_ADMIN_EMAIL'],
   password: ENV['VC_ADMIN_PASSWORD'],
@@ -15,10 +13,9 @@ vc_admin = User.create!(
   first_name: 'VC',
   last_name: 'Admin'
 )
-vc_admin.add_role(:admin, vc)
 vc_admin.add_role(:admin)
 
-oo = vc.organizations.create!(
+oo = Organization.create!(
     name: "Aldersgate United Methodist Church",
     description: "Church",
     url: "https://shareyourchristmas.net/partner/aldersgate/4"
@@ -46,13 +43,13 @@ oo_admin = User.create!(
 oo_admin.add_role(:admin, oo)
 
 
-cp = vc.campaigns.create!(
+cp = Campaign.create!(
   name: "Share Christmas 2016",
   donation_deadline: Date.today + 5.days,
   reminder_date: Date.today + 2.days,
   description: "Christmas campaign"
 )
-cp2 = vc.campaigns.create!(
+cp2 = Campaign.create!(
   name: "Backpacks 2016",
   donation_deadline: Date.today + 10.days,
   reminder_date: Date.today + 7.days,
@@ -66,34 +63,25 @@ rf = oc.recipient_families.create!(
   contact_last_name: "Jenkins",
   contact_first_name: "Leeroy",
   address: "33234 Something Ave",
+  campaign: cp,
   city: "Seattle",
   state: "FL",
   zip: "24567",
   phone: "252-281-3348"
 )
 
-john = rf.recipients.create!(
+john = does.recipients.create!(
   first_name: "Jimmy",
   last_name: "Doe",
-  email: "jimmydoe@gmail.com",
-  street: "Main Ave",
-  city: "Springfield",
-  state: "VA",
-  zip_code: "22012",
   age: 11,
   gender: "male",
   race: "Hispanic",
   size: "M",
   wish_list: "Bicycle, iPad Pro, Basketball"
 )
-jane = rf.recipients.create!(
+jane = does.recipients.create!(
   first_name: "Jane",
   last_name: "Doe",
-  email: "janedoe@gmail.com",
-  street: "Second St",
-  city: "Lava",
-  state: "CO",
-  zip_code: "80210",
   age: 9,
   gender: "female",
   race: "Asian",

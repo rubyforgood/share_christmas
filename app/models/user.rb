@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
+#  email                  :string           default("")
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -26,6 +26,12 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  # Email is not required, so you can create members, match
+  # them with recipients, and not have them login.
+  def email_required?
+    false
+  end
 
   has_many :memberships
   has_many :organizations, through: :memberships
